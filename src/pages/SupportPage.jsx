@@ -1,3 +1,4 @@
+import emailjs from "@emailjs/browser";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { HeadphonesIcon, Send, Mail, User, MessageSquare, X as CloseIcon } from "lucide-react";
@@ -13,7 +14,7 @@ export function SupportPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
-    { icon: Mail,           label: t("support.contact_email"),    value: "support@lostbyte.com" },
+    { icon: Mail,           label: t("support.contact_email"),    value: "lostbyte.support@gmail.com" },
     { icon: HeadphonesIcon, label: t("support.contact_response"), value: t("support.contact_response_value") },
     { icon: MessageSquare,  label: t("support.contact_hours"),    value: t("support.contact_hours_value") },
   ];
@@ -23,20 +24,40 @@ export function SupportPage() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!form.name || !form.email || !form.message) {
-      toast.error(t("support.error_fill_all"));
-      return;
-    }
-    setIsSubmitting(true);
-    await new Promise((r) => setTimeout(r, 1500));
-    setIsSubmitting(false);
+  e.preventDefault();
+  if (!form.name || !form.email || !form.message) {
+    toast.error(t("support.error_fill_all"));
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    await emailjs.send(
+      "service_jshbmlw",   //Service ID
+      "template_yu4rlrn",  //Template ID
+      {
+        name:    form.name,
+        email:   form.email,
+        message: form.message,
+        time:    new Date().toLocaleString(),
+      },
+    );
+
     toast.success(t("support.success"), {
       description: t("support.success_description"),
       cancel: { label: <CloseIcon className="h-4 w-4" />, onClick: () => {} },
     });
+
     setForm({ name: "", email: "", message: "" });
-  };
+
+  } catch (error) {
+    toast.error("Failed to send message. Please try again.");
+    console.error("EmailJS error:", error);
+  } finally {
+    setIsSubmitting(false);
+  }
+};
 
   return (
     <>
