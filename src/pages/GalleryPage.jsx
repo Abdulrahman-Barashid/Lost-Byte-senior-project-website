@@ -4,12 +4,12 @@ import { ImageIcon } from "lucide-react";
 import { useLanguage } from "../context/LanguageContext";
 
 const GALLERY_IMAGES = [
-  { id: 1, title: "Main Menu",        description: "The haunting main menu interface" },
-  { id: 2, title: "Puzzle Room",      description: "Solve IT puzzles to progress" },
-  { id: 3, title: "Coding Challenge", description: "Debug corrupted code" },
-  { id: 4, title: "Network Maze",     description: "Navigate through network topology" },
-  { id: 5, title: "Leaderboard",      description: "Compete globally" },
-  { id: 6, title: "Boss Encounter",   description: "Face the ultimate challenge" },
+  { id: 1, titleKey: "gallery.img1_title", descKey: "gallery.img1_desc" },
+  { id: 2, titleKey: "gallery.img2_title", descKey: "gallery.img2_desc" },
+  { id: 3, titleKey: "gallery.img3_title", descKey: "gallery.img3_desc" },
+  { id: 4, titleKey: "gallery.img4_title", descKey: "gallery.img4_desc" },
+  { id: 5, titleKey: "gallery.img5_title", descKey: "gallery.img5_desc" },
+  { id: 6, titleKey: "gallery.img6_title", descKey: "gallery.img6_desc" },
 ];
 
 const SYSTEM_REQUIREMENTS = {
@@ -65,8 +65,8 @@ export function GalleryPage() {
                 <div className="relative overflow-hidden rounded-lg border border-border bg-card aspect-video">
                   <div className="absolute inset-0 bg-gradient-to-br from-red-900/40 to-red-950/60 flex items-center justify-center">
                     <div className="text-center p-6">
-                      <p className="font-bold text-xl mb-2">{image.title}</p>
-                      <p className="text-sm text-muted-foreground">{image.description}</p>
+                      <p className="font-bold text-xl mb-2">{t(image.titleKey)}</p>
+                      <p className="text-sm text-muted-foreground">{t(image.descKey)}</p>
                     </div>
                   </div>
                   <div className="absolute inset-0 bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
@@ -126,9 +126,9 @@ export function GalleryPage() {
             onClick={(e) => e.stopPropagation()}
           >
             <div className="aspect-video bg-gradient-to-br from-red-900/40 to-red-950/60 rounded-lg flex items-center justify-center mb-4">
-              <p className="text-2xl font-bold">{selected.title}</p>
+              <p className="text-2xl font-bold">{t(selected.titleKey)}</p>
             </div>
-            <p className="text-center text-muted-foreground mb-4">{selected.description}</p>
+            <p className="text-center text-muted-foreground mb-4">{t(selected.descKey)}</p>
             <button
               onClick={() => setSelectedId(null)}
               className="w-full px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors"

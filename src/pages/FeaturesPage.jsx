@@ -21,14 +21,13 @@ function BrainIcon({ className }) {
 }
 
 const PUZZLE_CATEGORIES = [
-  { name: "Programming",     count: "30+ Puzzles" },
-  { name: "Networking",      count: "25+ Puzzles" },
-  { name: "Databases",       count: "20+ Puzzles" },
-  { name: "Cybersecurity",   count: "35+ Puzzles" },
-  { name: "Algorithms",      count: "28+ Puzzles" },
-  { name: "System Design",   count: "22+ Puzzles" },
-  { name: "Cloud Computing", count: "18+ Puzzles" },
-  { name: "DevOps",          count: "15+ Puzzles" },
+  { key: "features.cat_programming",   count: "30+" },
+  { key: "features.cat_networking",    count: "25+" },
+  { key: "features.cat_databases",     count: "20+" },
+  { key: "features.cat_cybersecurity", count: "35+" },
+  { key: "features.cat_algorithms",    count: "28+" },
+  { key: "features.cat_system_design", count: "22+" },
+  { key: "features.cat_cloud",         count: "18+" },
 ];
 
 export function FeaturesPage() {
@@ -98,8 +97,8 @@ export function FeaturesPage() {
                   transition={{ duration: 0.3, delay: index * 0.05 }}
                   className="bg-muted/50 rounded-lg p-4 text-center hover:bg-muted transition-colors"
                 >
-                  <p className="font-semibold mb-1">{category.name}</p>
-                  <p className="text-sm text-muted-foreground">{category.count}</p>
+                  <p className="font-semibold mb-1">{t(category.key)}</p>
+                  <p className="text-sm text-muted-foreground">{category.count} {t("features.puzzles")}</p>
                 </motion.div>
               ))}
             </div>
