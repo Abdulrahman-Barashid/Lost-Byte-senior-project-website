@@ -13,6 +13,7 @@ import {
 import { toast, Toaster } from "sonner";
 import { useLanguage } from "../context/LanguageContext";
 
+const PAYPAL_PAYMENT_URL = "https://www.paypal.com/ncp/payment/WHLUQU9TVH6GU";
 const GAME_DOWNLOAD_URL = "https://drive.google.com";
 
 function generateOTP() {
@@ -48,7 +49,6 @@ export function DownloadPage() {
   const { t } = useLanguage();
   const [email, setEmail] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
-  const [isProcessing, setIsProcessing] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otpInput, setOtpInput] = useState("");
   const [generatedOTP, setGeneratedOTP] = useState("");
@@ -112,15 +112,8 @@ export function DownloadPage() {
     }
   };
 
-  const handlePurchase = async () => {
-    setIsProcessing(true);
-    await new Promise((r) => setTimeout(r, 2000));
-    setIsProcessing(false);
-    toast.success(t("download.payment_success"), {
-      description: t("download.payment_success_description"),
-      cancel: { label: <CloseIcon className="h-4 w-4" />, onClick: () => {} },
-    });
-    // TODO: integrate Stripe
+  const handlePurchase = () => {
+    window.open(PAYPAL_PAYMENT_URL, "_blank");
   };
 
   return (
@@ -304,24 +297,30 @@ export function DownloadPage() {
 
               <button
                 onClick={handlePurchase}
-                disabled={isProcessing}
-                className="w-full px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-6 py-3 bg-[#0070ba] hover:bg-[#003087] text-white rounded-lg font-semibold transition-colors flex items-center justify-center gap-2"
               >
-                {isProcessing ? (
-                  <>
-                    <div className="h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                    {t("download.processing")}
-                  </>
-                ) : (
-                  <>
-                    <CreditCard className="h-5 w-5" />
-                    {t("download.buy_now")}
-                  </>
-                )}
+                <CreditCard className="h-5 w-5" />
+                {t("download.buy_now")}
               </button>
               <p className="text-xs text-center text-muted-foreground mt-4">
                 {t("download.secure_payment")}
               </p>
+
+              <div className="mt-6 pt-6 border-t border-border text-center">
+                <p className="text-sm font-medium mb-3">
+                  {t("download.scan_to_pay")}
+                </p>
+                <div className="flex justify-center">
+                  <img
+                    src="/qrcode.png"
+                    alt="PayPal QR Code"
+                    className="w-40 h-40 rounded-lg border border-border"
+                  />
+                </div>
+                <p className="text-xs text-muted-foreground mt-2">
+                  {t("download.scan_qr_desc")}
+                </p>
+              </div>
             </motion.div>
           </div>
 

@@ -149,6 +149,8 @@ const translations = {
     "download.verification_failed_description": "Please use a valid @stu.kau.edu.sa email address.",
     "download.payment_success": "Payment successful!",
     "download.payment_success_description": "Your download will start shortly.",
+    "download.scan_to_pay": "Or scan to pay",
+    "download.scan_qr_desc": "Scan with your camera app to pay via PayPal",
   },
 
   ar: {
@@ -297,6 +299,8 @@ const translations = {
     "download.verification_failed_description": "يرجى استخدام بريد @stu.kau.edu.sa صالح.",
     "download.payment_success": "تمت عملية الدفع!",
     "download.payment_success_description": "سيبدأ التحميل قريباً.",
+    "download.scan_to_pay": "أو امسح للدفع",
+    "download.scan_qr_desc": "امسح الرمز بكاميرا هاتفك للدفع عبر PayPal",
   },
 };
 
