@@ -20,7 +20,7 @@ Open [http://localhost:5173]
 
 ```
 src/
-├── assets/           # CSS (theme, fonts, tailwind)
+├── assets/           # CSS (theme, index, tailwind)
 |   ├── images/       # all the images used
 ├── components/
 │   ├── layout/       # Layout, ThemeProvider, ThemeToggle
