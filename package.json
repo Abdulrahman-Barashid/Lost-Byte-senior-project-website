@@ -3,7 +3,7 @@
   "private": true,
   "version": "1.0.0",
   "type": "module",
-  "homepage": "https://<Abdulrahman-Barashid>.github.io/<Lost-Byte-senior-project-website>",
+  "homepage": "https://Abdulrahman-Barashid.github.io/Lost-Byte-senior-project-website",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
