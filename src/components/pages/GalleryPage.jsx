@@ -1,7 +1,8 @@
 import { motion } from "motion/react";
 import { useState } from "react";
 import { ImageIcon } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../../context/LanguageContext";
+import "../../styles/GalleryPage.css";
 
 const GALLERY_IMAGES = [
   { id: 1, titleKey: "gallery.img1_title", descKey: "gallery.img1_desc" },
@@ -35,23 +36,21 @@ export function GalleryPage() {
   const selected = GALLERY_IMAGES.find((img) => img.id === selectedId);
 
   return (
-    <div className="py-20 px-4">
-      <div className="container mx-auto max-w-6xl">
+    <div className="gallery-page">
+      <div className="gallery-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <h1 className="text-5xl font-bold text-center mb-6 flex items-center justify-center gap-3">
-            <ImageIcon className="h-12 w-12 text-red-500" />
+          <h1 className="gallery-title">
+            <ImageIcon className="h-12 w-12 gallery-title-icon" />
             {t("gallery.title")}
           </h1>
-          <p className="text-xl text-center text-muted-foreground mb-16 max-w-3xl mx-auto">
-            {t("gallery.subtitle")}
-          </p>
+          <p className="gallery-subtitle">{t("gallery.subtitle")}</p>
 
-          {/* Image Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {/* Image grid */}
+          <div className="gallery-grid">
             {GALLERY_IMAGES.map((image, index) => (
               <motion.div
                 key={image.id}
@@ -59,18 +58,18 @@ export function GalleryPage() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.4, delay: index * 0.1 }}
-                className="group cursor-pointer"
+                className="gallery-item"
                 onClick={() => setSelectedId(image.id)}
               >
-                <div className="relative overflow-hidden rounded-lg border border-border bg-card aspect-video">
-                  <div className="absolute inset-0 bg-gradient-to-br from-red-900/40 to-red-950/60 flex items-center justify-center">
-                    <div className="text-center p-6">
-                      <p className="font-bold text-xl mb-2">{t(image.titleKey)}</p>
-                      <p className="text-sm text-muted-foreground">{t(image.descKey)}</p>
+                <div className="gallery-item-frame">
+                  <div className="gallery-item-bg">
+                    <div>
+                      <p className="gallery-item-title">{t(image.titleKey)}</p>
+                      <p className="gallery-item-desc">{t(image.descKey)}</p>
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-red-500/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <p className="text-white font-semibold">{t("gallery.click_to_view")}</p>
+                  <div className="gallery-item-overlay">
+                    <span className="gallery-item-overlay-label">{t("gallery.click_to_view")}</span>
                   </div>
                 </div>
               </motion.div>
@@ -82,27 +81,23 @@ export function GalleryPage() {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-card border border-border rounded-lg p-8"
+            className="gallery-sysreq-card"
           >
-            <h2 className="text-2xl font-bold mb-6 text-center">{t("gallery.system_req")}</h2>
-            <div className="grid md:grid-cols-2 gap-8 max-w-3xl mx-auto">
+            <h2 className="gallery-sysreq-title">{t("gallery.system_req")}</h2>
+            <div className="gallery-sysreq-grid">
               <div>
-                <h3 className="font-bold mb-4 text-lg">{t("gallery.minimum")}</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <h3 className="gallery-sysreq-tier-title">{t("gallery.minimum")}</h3>
+                <ul className="gallery-sysreq-list">
                   {SYSTEM_REQUIREMENTS.minimum.map(({ label, value }) => (
-                    <li key={label}>
-                      <span className="font-semibold text-foreground">{label}:</span> {value}
-                    </li>
+                    <li key={label}><span>{label}:</span> {value}</li>
                   ))}
                 </ul>
               </div>
               <div>
-                <h3 className="font-bold mb-4 text-lg">{t("gallery.recommended")}</h3>
-                <ul className="space-y-2 text-sm text-muted-foreground">
+                <h3 className="gallery-sysreq-tier-title">{t("gallery.recommended")}</h3>
+                <ul className="gallery-sysreq-list">
                   {SYSTEM_REQUIREMENTS.recommended.map(({ label, value }) => (
-                    <li key={label}>
-                      <span className="font-semibold text-foreground">{label}:</span> {value}
-                    </li>
+                    <li key={label}><span>{label}:</span> {value}</li>
                   ))}
                 </ul>
               </div>
@@ -116,22 +111,22 @@ export function GalleryPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
+          className="gallery-lightbox"
           onClick={() => setSelectedId(null)}
         >
           <motion.div
             initial={{ scale: 0.8 }}
             animate={{ scale: 1 }}
-            className="bg-card border border-border rounded-lg p-8 max-w-4xl w-full"
+            className="gallery-lightbox-card"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="aspect-video bg-gradient-to-br from-red-900/40 to-red-950/60 rounded-lg flex items-center justify-center mb-4">
-              <p className="text-2xl font-bold">{t(selected.titleKey)}</p>
+            <div className="gallery-lightbox-preview">
+              <p className="gallery-lightbox-preview-title">{t(selected.titleKey)}</p>
             </div>
-            <p className="text-center text-muted-foreground mb-4">{t(selected.descKey)}</p>
+            <p className="gallery-lightbox-desc">{t(selected.descKey)}</p>
             <button
               onClick={() => setSelectedId(null)}
-              className="w-full px-6 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-semibold transition-colors"
+              className="gallery-lightbox-close-btn"
             >
               {t("gallery.close")}
             </button>

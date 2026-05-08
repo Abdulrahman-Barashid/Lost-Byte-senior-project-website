@@ -5,10 +5,10 @@
 Developed by Fahad Al-Hawas, Abdulrahman Barashid, Rayan Al-Shehri. 
 
 ## To run the website locally
-1. Clone the project website from Github
+1. Clone the project website from Github Repo.
 2. Then do the followings below:
 ```bash
-CD "to the project folder"
+cd "to the project folder"
 npm install
 npm run dev
 ```
@@ -21,12 +21,14 @@ Open [http://localhost:5173]
 ```
 src/
 ├── assets/           # CSS (theme, fonts, tailwind)
+|   ├── images/       # all the images used
 ├── components/
 │   ├── layout/       # Layout, ThemeProvider, ThemeToggle
-│   └── sections/     # HeroSection, LeaderboardSection
+│   └── sections/     # HomeSection, LeaderboardSection
+|   └── pages/        # Contain all the pages
 ├── context/          # LanguageContext (EN/AR translations)
 ├── lib/              # Utility functions
-├── pages/            # Page components
+├── styles/           # Contain all the css for the components    
 ├── App.jsx
 ├── main.jsx
 └── routes.jsx

@@ -1,0 +1,86 @@
+/* ── FeaturesPage.css ── */
+
+.features-page { padding: 5rem 1rem; }
+.features-container { margin: 0 auto; max-width: 72rem; }
+
+.features-title {
+  font-size: 3rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.features-subtitle {
+  font-size: 1.25rem;
+  color: var(--muted-foreground);
+  text-align: center;
+  max-width: 48rem;
+  margin: 0 auto 4rem;
+}
+
+/* Feature cards grid */
+.features-grid {
+  display: grid;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+@media (min-width: 768px)  { .features-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .features-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.features-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  transition: border-color 0.2s;
+}
+.features-card:hover { border-color: rgb(239, 68, 68); }
+
+.features-card-icon-box {
+  padding: 0.75rem;
+  background-color: rgba(239, 68, 68, 0.1);
+  border-radius: 0.5rem;
+  color: rgb(239, 68, 68);
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+.features-card:hover .features-card-icon-box {
+  background-color: rgba(239, 68, 68, 0.2);
+}
+
+.features-card-title { font-weight: 700; margin-bottom: 0.5rem; }
+.features-card-desc  { font-size: 0.875rem; color: var(--muted-foreground); }
+
+/* Puzzle categories */
+.features-categories-card {
+  background-color: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 2rem;
+}
+.features-categories-title {
+  font-size: 1.875rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.features-categories-grid {
+  display: grid;
+  gap: 1.5rem;
+}
+@media (min-width: 640px)  { .features-categories-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1024px) { .features-categories-grid { grid-template-columns: repeat(4, 1fr); } }
+
+.features-category-item {
+  background-color: var(--muted);
+  border-radius: 0.5rem;
+  padding: 1rem;
+  text-align: center;
+  transition: filter 0.2s;
+}
+.features-category-item:hover { filter: brightness(1.05); }
+
+.features-category-name  { font-weight: 600; margin-bottom: 0.25rem; }
+.features-category-count { font-size: 0.875rem; color: var(--muted-foreground); }

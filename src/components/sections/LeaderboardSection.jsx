@@ -1,6 +1,7 @@
 import { motion } from "motion/react";
 import { Trophy, Medal, Award } from "lucide-react";
 import { useLanguage } from "../../context/LanguageContext";
+import "../../styles/LeaderboardSection.css";
 
 const LEADERBOARD_DATA = [
   { rank: 1,  username: "ByteMaster",   score: 15420, puzzlesSolved: 24, completionTime: "45:23" },
@@ -17,8 +18,8 @@ const LEADERBOARD_DATA = [
 
 function RankIcon({ rank }) {
   if (rank === 1) return <Trophy className="h-6 w-6 text-yellow-500" />;
-  if (rank === 2) return <Medal className="h-6 w-6 text-gray-400" />;
-  if (rank === 3) return <Award className="h-6 w-6 text-amber-700" />;
+  if (rank === 2) return <Medal  className="h-6 w-6 text-gray-400" />;
+  if (rank === 3) return <Award  className="h-6 w-6 text-amber-700" />;
   return <span className="text-muted-foreground font-medium">#{rank}</span>;
 }
 
@@ -26,30 +27,30 @@ export function LeaderboardSection() {
   const { t } = useLanguage();
 
   return (
-    <section id="leaderboard" className="py-20 px-4">
-      <div className="container mx-auto max-w-5xl">
+    <section id="leaderboard" className="leaderboard-section">
+      <div className="leaderboard-container">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className="text-4xl font-bold text-center mb-4 flex items-center justify-center gap-3">
-            <Trophy className="h-10 w-10 text-red-500" />
+          <h2 className="leaderboard-title">
+            <Trophy className="h-10 w-10 leaderboard-title-icon" />
             {t("leaderboard.title")}
           </h2>
-          <p className="text-center text-muted-foreground mb-12">{t("leaderboard.subtitle")}</p>
+          <p className="leaderboard-subtitle">{t("leaderboard.subtitle")}</p>
 
-          <div className="bg-card border border-border rounded-lg overflow-hidden shadow-lg">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-muted/50 border-b border-border">
+          <div className="leaderboard-card">
+            <div className="leaderboard-scroll">
+              <table className="leaderboard-table">
+                <thead>
                   <tr>
-                    <th className="px-6 py-4 text-left">{t("leaderboard.rank")}</th>
-                    <th className="px-6 py-4 text-left">{t("leaderboard.player")}</th>
-                    <th className="px-6 py-4 text-right">{t("leaderboard.score")}</th>
-                    <th className="px-6 py-4 text-right hidden sm:table-cell">{t("leaderboard.puzzles")}</th>
-                    <th className="px-6 py-4 text-right hidden md:table-cell">{t("leaderboard.time")}</th>
+                    <th>{t("leaderboard.rank")}</th>
+                    <th>{t("leaderboard.player")}</th>
+                    <th className="col-right">{t("leaderboard.score")}</th>
+                    <th className="col-right col-hide-sm">{t("leaderboard.puzzles")}</th>
+                    <th className="col-right col-hide-md">{t("leaderboard.time")}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -60,19 +61,12 @@ export function LeaderboardSection() {
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.4, delay: index * 0.05 }}
-                      className="border-b border-border last:border-0 hover:bg-muted/30 transition-colors"
                     >
-                      <td className="px-6 py-4">
-                        <RankIcon rank={entry.rank} />
-                      </td>
-                      <td className="px-6 py-4 font-semibold">{entry.username}</td>
-                      <td className="px-6 py-4 text-right text-red-500 font-bold">
-                        {entry.score.toLocaleString()}
-                      </td>
-                      <td className="px-6 py-4 text-right hidden sm:table-cell">{entry.puzzlesSolved}</td>
-                      <td className="px-6 py-4 text-right text-muted-foreground hidden md:table-cell">
-                        {entry.completionTime}
-                      </td>
+                      <td><RankIcon rank={entry.rank} /></td>
+                      <td className="col-name">{entry.username}</td>
+                      <td className="col-right col-score">{entry.score.toLocaleString()}</td>
+                      <td className="col-right col-hide-sm">{entry.puzzlesSolved}</td>
+                      <td className="col-right col-hide-md col-time">{entry.completionTime}</td>
                     </motion.tr>
                   ))}
                 </tbody>
