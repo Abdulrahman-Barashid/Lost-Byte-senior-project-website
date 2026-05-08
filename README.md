@@ -15,6 +15,9 @@ npm run dev
 then
 Open [http://localhost:5173]
 
+## Try Lost Byte website 
+Open https://abdulrahman-barashid.github.io/Lost-Byte-senior-project-website/
+Feedbacks are much appreciated. 
 
 ## Project Structure
 
