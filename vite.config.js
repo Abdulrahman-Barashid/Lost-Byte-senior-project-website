@@ -4,12 +4,11 @@ import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 
 export default defineConfig({
-  base: '/Lost-Byte-senior-project-website/', 
+  base: process.env.NODE_ENV === 'production'
+    ? '/Lost-Byte-senior-project-website/'
+    : '/',  
 
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react(), tailwindcss()],
 
   resolve: {
     alias: {
