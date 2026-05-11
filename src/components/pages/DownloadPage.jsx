@@ -16,7 +16,7 @@ import qrcode from "../../assets/images/qrcode.png";
 import "../../styles/DownloadPage.css";
 
 const PAYPAL_PAYMENT_URL = "https://www.paypal.com/ncp/payment/WHLUQU9TVH6GU";
-const GAME_DOWNLOAD_URL  = "https://drive.google.com";
+const GAME_DOWNLOAD_URL = "https://drive.google.com";
 
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -31,31 +31,34 @@ const PURCHASE_FEATURES = [
 
 const SYSTEM_REQUIREMENTS = {
   minimum: [
-    { label: "OS",        value: "Windows 10 64-bit" },
+    { label: "OS", value: "Windows 10 64-bit" },
     { label: "Processor", value: "Intel Core i3" },
-    { label: "Memory",    value: "4 GB RAM" },
-    { label: "Storage",   value: "2 GB available space" },
+    { label: "Memory", value: "4 GB RAM" },
+    { label: "Storage", value: "2 GB available space" },
   ],
   recommended: [
-    { label: "OS",        value: "Windows 11 64-bit" },
+    { label: "OS", value: "Windows 11 64-bit" },
     { label: "Processor", value: "Intel Core i5" },
-    { label: "Memory",    value: "8 GB RAM" },
-    { label: "Storage",   value: "4 GB available space" },
+    { label: "Memory", value: "8 GB RAM" },
+    { label: "Storage", value: "4 GB available space" },
   ],
 };
 
 export function DownloadPage() {
   const { t } = useLanguage();
-  const [email, setEmail]               = useState("");
-  const [isVerifying, setIsVerifying]   = useState(false);
-  const [otpSent, setOtpSent]           = useState(false);
-  const [otpInput, setOtpInput]         = useState("");
+  const [email, setEmail] = useState("");
+  const [isVerifying, setIsVerifying] = useState(false);
+  const [otpSent, setOtpSent] = useState(false);
+  const [otpInput, setOtpInput] = useState("");
   const [generatedOTP, setGeneratedOTP] = useState("");
-  const [otpError, setOtpError]         = useState("");
+  const [otpError, setOtpError] = useState("");
 
   const handleVerifyEmail = async (e) => {
     e.preventDefault();
-    if (!email) { toast.error("Please enter your email"); return; }
+    if (!email) {
+      toast.error("Please enter your email");
+      return;
+    }
 
     const isKauEmail = email.toLowerCase().endsWith("@stu.kau.edu.sa");
     if (!isKauEmail) {
@@ -71,12 +74,15 @@ export function DownloadPage() {
     setGeneratedOTP(otp);
 
     try {
-      await emailjs.send("service_jshbmlw", "template_1rbk9yh", {
-        to_email: email,
-        otp: otp,
-      });
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_OTP_TEMPLATE,
+        { to_email: email, otp: otp },
+      );
       setOtpSent(true);
-      toast.success("OTP sent!", { description: `A 6-digit code was sent to ${email}` });
+      toast.success("OTP sent!", {
+        description: `A 6-digit code was sent to ${email}`,
+      });
     } catch (err) {
       toast.error("Failed to send OTP. Please try again.");
       console.error(err);
@@ -110,7 +116,6 @@ export function DownloadPage() {
       <Toaster position="top-right" />
       <div className="download-page">
         <div className="download-container">
-
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -128,7 +133,6 @@ export function DownloadPage() {
 
           {/* Download options */}
           <div className="download-options-grid">
-
             {/* KAU Student card */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
@@ -139,25 +143,34 @@ export function DownloadPage() {
               <div className="download-kau-header">
                 <GraduationCap className="h-8 w-8 download-kau-icon" />
                 <div>
-                  <h2 className="download-kau-title">{t("download.kau_student")}</h2>
-                  <p className="download-kau-desc">{t("download.kau_description")}</p>
+                  <h2 className="download-kau-title">
+                    {t("download.kau_student")}
+                  </h2>
+                  <p className="download-kau-desc">
+                    {t("download.kau_description")}
+                  </p>
                 </div>
               </div>
 
               {!otpSent ? (
                 <form onSubmit={handleVerifyEmail} className="download-form">
                   <div>
-                    <label htmlFor="student-email" className="download-form-label">
+                    <label
+                      htmlFor="student-email"
+                      className="download-form-label"
+                    >
                       {t("download.verify_email")}
                     </label>
                     <div className="download-input-wrap">
                       <Mail className="h-5 w-5 download-input-icon" />
                       <input
-                        type="email" id="student-email"
+                        type="email"
+                        id="student-email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder={t("download.email_placeholder")}
-                        required className="download-input"
+                        required
+                        className="download-input"
                       />
                     </div>
                   </div>
@@ -188,17 +201,27 @@ export function DownloadPage() {
                     type="text"
                     maxLength={6}
                     value={otpInput}
-                    onChange={(e) => { setOtpInput(e.target.value); setOtpError(""); }}
+                    onChange={(e) => {
+                      setOtpInput(e.target.value);
+                      setOtpError("");
+                    }}
                     placeholder="Enter 6-digit code"
                     className="download-otp-input"
                   />
                   {otpError && <p className="download-otp-error">{otpError}</p>}
-                  <button onClick={handleVerifyOTP} className="download-verify-btn">
+                  <button
+                    onClick={handleVerifyOTP}
+                    className="download-verify-btn"
+                  >
                     <CheckCircle className="h-5 w-5" />
                     Confirm &amp; Download
                   </button>
                   <button
-                    onClick={() => { setOtpSent(false); setOtpInput(""); setOtpError(""); }}
+                    onClick={() => {
+                      setOtpSent(false);
+                      setOtpInput("");
+                      setOtpError("");
+                    }}
                     className="download-otp-back-btn"
                   >
                     ← Use a different email
@@ -209,8 +232,12 @@ export function DownloadPage() {
               <div className="download-free-badge">
                 <CheckCircle className="h-5 w-5 download-free-badge-icon" />
                 <div>
-                  <p className="download-free-badge-title">{t("download.free_access")}</p>
-                  <p className="download-free-badge-desc">{t("download.free_access_desc")}</p>
+                  <p className="download-free-badge-title">
+                    {t("download.free_access")}
+                  </p>
+                  <p className="download-free-badge-desc">
+                    {t("download.free_access_desc")}
+                  </p>
                 </div>
               </div>
             </motion.div>
@@ -225,8 +252,12 @@ export function DownloadPage() {
               <div className="download-purchase-header">
                 <DollarSign className="h-8 w-8 download-purchase-icon" />
                 <div>
-                  <h2 className="download-purchase-title">{t("download.purchase")}</h2>
-                  <p className="download-purchase-desc">{t("download.purchase_description")}</p>
+                  <h2 className="download-purchase-title">
+                    {t("download.purchase")}
+                  </h2>
+                  <p className="download-purchase-desc">
+                    {t("download.purchase_description")}
+                  </p>
                 </div>
               </div>
 
@@ -248,12 +279,18 @@ export function DownloadPage() {
                 <CreditCard className="h-5 w-5" />
                 {t("download.buy_now")}
               </button>
-              <p className="download-secure-text">{t("download.secure_payment")}</p>
+              <p className="download-secure-text">
+                {t("download.secure_payment")}
+              </p>
 
               {/* QR code */}
               <div className="download-qr-section">
                 <p className="download-qr-label">{t("download.scan_to_pay")}</p>
-                <img src={qrcode} alt="PayPal QR Code" className="download-qr-img" />
+                <img
+                  src={qrcode}
+                  alt="PayPal QR Code"
+                  className="download-qr-img"
+                />
                 <p className="download-qr-hint">{t("download.scan_qr_desc")}</p>
               </div>
             </motion.div>
@@ -273,21 +310,26 @@ export function DownloadPage() {
             transition={{ delay: 0.3 }}
             className="download-sysreq-card"
           >
-            <h3 className="download-sysreq-title">{t("download.system_req")}</h3>
+            <h3 className="download-sysreq-title">
+              {t("download.system_req")}
+            </h3>
             <div className="download-sysreq-grid">
               {["minimum", "recommended"].map((tier) => (
                 <div key={tier}>
-                  <h4 className="download-sysreq-tier">{t(`download.${tier}`)}</h4>
+                  <h4 className="download-sysreq-tier">
+                    {t(`download.${tier}`)}
+                  </h4>
                   <ul className="download-sysreq-list">
                     {SYSTEM_REQUIREMENTS[tier].map(({ label, value }) => (
-                      <li key={label}><span>{label}:</span> {value}</li>
+                      <li key={label}>
+                        <span>{label}:</span> {value}
+                      </li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
           </motion.div>
-
         </div>
       </div>
     </>

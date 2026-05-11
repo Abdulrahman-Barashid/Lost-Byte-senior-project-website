@@ -1,7 +1,14 @@
 import emailjs from "@emailjs/browser";
 import { motion } from "motion/react";
 import { useState } from "react";
-import { HeadphonesIcon, Send, Mail, User, MessageSquare, X as CloseIcon } from "lucide-react";
+import {
+  HeadphonesIcon,
+  Send,
+  Mail,
+  User,
+  MessageSquare,
+  X as CloseIcon,
+} from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { useLanguage } from "../../context/LanguageContext";
 import "../../styles/SupportPage.css";
@@ -12,9 +19,21 @@ export function SupportPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const contactInfo = [
-    { icon: Mail,           label: t("support.contact_email"),    value: "lostbyte.support@gmail.com" },
-    { icon: HeadphonesIcon, label: t("support.contact_response"), value: t("support.contact_response_value") },
-    { icon: MessageSquare,  label: t("support.contact_hours"),    value: t("support.contact_hours_value") },
+    {
+      icon: Mail,
+      label: t("support.contact_email"),
+      value: "lostbyte.support@gmail.com",
+    },
+    {
+      icon: HeadphonesIcon,
+      label: t("support.contact_response"),
+      value: t("support.contact_response_value"),
+    },
+    {
+      icon: MessageSquare,
+      label: t("support.contact_hours"),
+      value: t("support.contact_hours_value"),
+    },
   ];
 
   const handleChange = (e) => {
@@ -30,14 +49,14 @@ export function SupportPage() {
     setIsSubmitting(true);
     try {
       await emailjs.send(
-        "service_jshbmlw",
-        "template_yu4rlrn",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_SUPPORT_TEMPLATE,
         {
-          name:    form.name,
-          email:   form.email,
+          name: form.name,
+          email: form.email,
           message: form.message,
-          time:    new Date().toLocaleString(),
-        }
+          time: new Date().toLocaleString(),
+        },
       );
       toast.success(t("support.success"), {
         description: t("support.success_description"),
@@ -57,7 +76,6 @@ export function SupportPage() {
       <Toaster position="top-right" />
       <div className="support-page">
         <div className="support-container">
-
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -81,17 +99,20 @@ export function SupportPage() {
             className="support-form-card"
           >
             <form onSubmit={handleSubmit} className="support-form">
-
               <div>
                 <label htmlFor="name" className="support-form-label">
                   <User className="h-4 w-4 support-form-label-icon" />
                   {t("support.name")}
                 </label>
                 <input
-                  type="text" id="name" name="name"
-                  value={form.name} onChange={handleChange}
+                  type="text"
+                  id="name"
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
                   placeholder={t("support.name_placeholder")}
-                  required className="support-input"
+                  required
+                  className="support-input"
                 />
               </div>
 
@@ -101,10 +122,14 @@ export function SupportPage() {
                   {t("support.email")}
                 </label>
                 <input
-                  type="email" id="email" name="email"
-                  value={form.email} onChange={handleChange}
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={form.email}
+                  onChange={handleChange}
                   placeholder={t("support.email_placeholder")}
-                  required className="support-input"
+                  required
+                  className="support-input"
                 />
               </div>
 
@@ -114,9 +139,12 @@ export function SupportPage() {
                   {t("support.message")}
                 </label>
                 <textarea
-                  id="message" name="message"
-                  value={form.message} onChange={handleChange}
-                  rows={6} required
+                  id="message"
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={6}
+                  required
                   placeholder={t("support.message_placeholder")}
                   className="support-textarea"
                 />
@@ -157,7 +185,6 @@ export function SupportPage() {
               </div>
             ))}
           </motion.div>
-
         </div>
       </div>
     </>
