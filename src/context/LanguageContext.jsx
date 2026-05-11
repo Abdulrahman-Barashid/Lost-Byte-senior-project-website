@@ -87,10 +87,8 @@ const translations = {
     "gallery.img3_desc":  "Debug corrupted code",
     "gallery.img4_title": "Network Maze",
     "gallery.img4_desc":  "Navigate through network topology",
-    "gallery.img5_title": "Leaderboard",
-    "gallery.img5_desc":  "Compete globally",
-    "gallery.img6_title": "Boss Encounter",
-    "gallery.img6_desc":  "Face the ultimate challenge",
+    "gallery.img5_title": "Boss Encounter",
+    "gallery.img5_desc":  "Face the ultimate challenge",
 
     // Features page
     "features.puzzle_categories": "Puzzle Categories",
@@ -237,10 +235,8 @@ const translations = {
     "gallery.img3_desc":  "اكتشف الأخطاء في الكود التالف",
     "gallery.img4_title": "متاهة الشبكة",
     "gallery.img4_desc":  "تنقل عبر طوبولوجيا الشبكة",
-    "gallery.img5_title": "لوحة المتصدرين",
-    "gallery.img5_desc":  "تنافس على مستوى عالمي",
-    "gallery.img6_title": "مواجهة الزعيم",
-    "gallery.img6_desc":  "واجه التحدي الأقصى",
+    "gallery.img5_title": "مواجهة الزعيم",
+    "gallery.img5_desc":  "واجه التحدي الأقصى",
 
     // Features page
     "features.puzzle_categories": "فئات الألغاز",

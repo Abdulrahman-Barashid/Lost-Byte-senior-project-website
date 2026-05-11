@@ -23,6 +23,8 @@ Feedbacks are much appreciated.
 
 ```
 src/
+├── .github/           
+|   ├── workflows/    # automate building & deployment
 ├── assets/           # CSS (theme, index, tailwind)
 |   ├── images/       # all the images used
 ├── components/

@@ -10,7 +10,6 @@ const GALLERY_IMAGES = [
   { id: 3, titleKey: "gallery.img3_title", descKey: "gallery.img3_desc" },
   { id: 4, titleKey: "gallery.img4_title", descKey: "gallery.img4_desc" },
   { id: 5, titleKey: "gallery.img5_title", descKey: "gallery.img5_desc" },
-  { id: 6, titleKey: "gallery.img6_title", descKey: "gallery.img6_desc" },
 ];
 
 const SYSTEM_REQUIREMENTS = {

@@ -97,7 +97,7 @@ export function FeaturesPage() {
                   className="features-category-item"
                 >
                   <p className="features-category-name">{t(category.key)}</p>
-                  <p className="features-category-count">{category.count} {t("features.puzzles")}</p>
+                  <p className="features-category-count">{category.count} {t("puzzle")}</p>
                 </motion.div>
               ))}
             </div>
