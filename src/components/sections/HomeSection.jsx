@@ -69,7 +69,6 @@ export function HomeSection() {
                 {t("hero.get_steam_key")}
               </motion.button>
             </a>
-            <a href="#leaderboard">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -78,7 +77,6 @@ export function HomeSection() {
                 <Gamepad2 className="h-5 w-5" />
                 {t("hero.view_leaderboard")}
               </motion.button>
-            </a>
           </motion.div>
         </motion.div>
       </div>

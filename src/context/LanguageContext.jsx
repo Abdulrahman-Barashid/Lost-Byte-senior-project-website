@@ -139,7 +139,7 @@ const translations = {
     "download.purchase_description": "One-time purchase for lifetime access",
     "download.buy_now": "Buy Now",
     "download.processing": "Processing...",
-    "download.secure_payment": "Secure payment powered by Stripe",
+    "download.secure_payment": "Secure payment powered by PayPal",
     "download.system_req": "System Requirements",
     "download.minimum": "Minimum",
     "download.recommended": "Recommended",
