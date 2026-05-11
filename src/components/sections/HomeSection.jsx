@@ -1,10 +1,12 @@
 import { motion } from "motion/react";
 import { Download, Gamepad2, Ghost } from "lucide-react";
+import { useNavigate } from "react-router";
 import { useLanguage } from "../../context/LanguageContext";
 import "../../styles/HomeSection.css";
 
 export function HomeSection() {
   const { t } = useLanguage();
+  const navigate = useNavigate();
 
   return (
     <section id="home" className="home-section">
@@ -59,24 +61,27 @@ export function HomeSection() {
             transition={{ delay: 0.7 }}
             className="home-buttons"
           >
-            <a href="/download">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="home-btn-primary"
-              >
-                <Download className="h-5 w-5" />
-                {t("hero.get_steam_key")}
-              </motion.button>
-            </a>
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="home-btn-secondary"
-              >
-                <Gamepad2 className="h-5 w-5" />
-                {t("hero.view_leaderboard")}
-              </motion.button>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="home-btn-primary"
+              onClick={() => navigate("/download")}
+            >
+              <Download className="h-5 w-5" />
+              {t("hero.get_steam_key")}
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="home-btn-secondary"
+              onClick={() =>
+                document.getElementById("leaderboard")?.scrollIntoView({ behavior: "smooth" })
+              }
+            >
+              <Gamepad2 className="h-5 w-5" />
+              {t("hero.view_leaderboard")}
+            </motion.button>
           </motion.div>
         </motion.div>
       </div>
