@@ -22,9 +22,8 @@ import "../../styles/DownloadPage.css";
 const PAYPAL_PAYMENT_URL = "https://www.paypal.com/ncp/payment/WHLUQU9TVH6GU";
 const STEAM_REDEEM_URL = "https://store.steampowered.com/account/registerkey";
 
-// ── SET THIS TO true WHEN STEAM KEYS ARE READY IN FIRESTORE ──
+// SET THIS TO true WHEN STEAM KEYS ARE READY
 const KEYS_AVAILABLE = false;
-// ─────────────────────────────────────────────────────────────
 
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
@@ -237,11 +236,18 @@ export function DownloadPage() {
 
   // PayPal Buy Now — disabled until keys are ready
   const handlePurchase = () => {
-    toast.error("Steam keys are not available yet.", {
-      description:
-        "We are still setting up. Please check back later or contact us at lostbyte.support@gmail.com",
-      duration: 8000,
-    });
+    if (!KEYS_AVAILABLE) {
+      toast.error(t("download.keys_unavailable_title"), {
+        description: t("download.keys_unavailable_desc"),
+        duration: 8000,
+        closeButton: true,
+      });
+      return;
+    }
+    window.open(PAYPAL_PAYMENT_URL, "_blank");
+    setPaypalClicked(true);
+    setActiveFlow("paypal");
+    resetForm();
   };
 
   // KEY REVEAL SCREEN — shown after key is successfully claimed
@@ -487,35 +493,126 @@ export function DownloadPage() {
               {/* Disabled until keys are ready */}
               <button
                 onClick={handlePurchase}
-                className="download-paypal-btn download-paypal-btn-disabled"
+                className={`download-paypal-btn${!KEYS_AVAILABLE ? " download-paypal-btn-disabled" : ""}`}
               >
                 <CreditCard className="h-5 w-5" />
                 {t("download.buy_now")}
               </button>
 
-              <p className="download-keys-unavailable-notice">
-                {t("download.keys_unavailable_notice")}
-              </p>
-
-              <p className="download-secure-text">
-                {t("download.secure_payment")}
-              </p>
+              {!KEYS_AVAILABLE && (
+                <p className="download-keys-unavailable-notice">
+                  {t("download.keys_unavailable_notice")}
+                </p>
+              )}
 
               {/* QR code — only shown when keys are available */}
+              {/* QR code — only shown when keys are available */}
               {KEYS_AVAILABLE && (
-                <div className="download-qr-section">
-                  <p className="download-qr-label">
-                    {t("download.scan_to_pay")}
-                  </p>
-                  <img
-                    src={qrcode}
-                    alt="PayPal QR Code"
-                    className="download-qr-img"
-                  />
-                  <p className="download-qr-hint">
-                    {t("download.scan_qr_desc")}
-                  </p>
-                </div>
+                <>
+                  <div className="download-qr-section">
+                    <p className="download-qr-label">
+                      {t("download.scan_to_pay")}
+                    </p>
+                    <img
+                      src={qrcode}
+                      alt="PayPal QR Code"
+                      className="download-qr-img"
+                    />
+                    <p className="download-qr-hint">
+                      {t("download.scan_qr_desc")}
+                    </p>
+                  </div>
+
+                  {/* PayPal email verification — shown after Buy Now clicked */}
+                  {paypalClicked && (
+                    <div className="download-paypal-verify-section">
+                      <p className="download-paypal-verify-label">
+                        Enter your PayPal email to get your Steam key:
+                      </p>
+                      {!otpSent || activeFlow !== "paypal" ? (
+                        <form
+                          onSubmit={(e) => handleVerifyEmail(e, "paypal")}
+                          className="download-form"
+                        >
+                          <div className="download-input-wrap">
+                            <Mail className="h-5 w-5 download-input-icon" />
+                            <input
+                              type="email"
+                              value={activeFlow === "paypal" ? email : ""}
+                              onChange={(e) => {
+                                setActiveFlow("paypal");
+                                setEmail(e.target.value);
+                              }}
+                              placeholder="your@email.com"
+                              required
+                              className="download-input"
+                            />
+                          </div>
+                          <button
+                            type="submit"
+                            disabled={isVerifying && activeFlow === "paypal"}
+                            className="download-verify-btn"
+                          >
+                            {isVerifying && activeFlow === "paypal" ? (
+                              <>
+                                <div className="download-spinner" />
+                                Sending code...
+                              </>
+                            ) : (
+                              <>
+                                <Mail className="h-5 w-5" />
+                                Send Verification Code
+                              </>
+                            )}
+                          </button>
+                        </form>
+                      ) : (
+                        <div className="download-form">
+                          <p className="download-otp-info">
+                            Code sent to <strong>{email}</strong>
+                          </p>
+                          <input
+                            type="text"
+                            maxLength={6}
+                            value={otpInput}
+                            onChange={(e) => {
+                              setOtpInput(e.target.value);
+                              setOtpError("");
+                            }}
+                            placeholder="Enter 6-digit code"
+                            className="download-otp-input"
+                          />
+                          {otpError && (
+                            <p className="download-otp-error">{otpError}</p>
+                          )}
+                          <button
+                            onClick={handleVerifyOTP}
+                            disabled={isFetchingKey}
+                            className="download-verify-btn"
+                          >
+                            {isFetchingKey ? (
+                              <>
+                                <div className="download-spinner" />
+                                Getting your key...
+                              </>
+                            ) : (
+                              <>
+                                <Key className="h-5 w-5" />
+                                Confirm &amp; Get Steam Key
+                              </>
+                            )}
+                          </button>
+                          <button
+                            onClick={resetForm}
+                            className="download-otp-back-btn"
+                          >
+                            ← Use a different email
+                          </button>
+                        </div>
+                      )}
+                    </div>
+                  )}
+                </>
               )}
             </motion.div>
           </div>
