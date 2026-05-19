@@ -4,17 +4,6 @@
 
 Developed by Fahad Al-Hawas, Abdulrahman Barashid, Rayan Al-Shehri. 
 
-## To run the website locally
-1. Clone the project website from Github Repo.
-2. Then do the followings below:
-```bash
-cd "to the project folder"
-npm install
-npm run dev
-```
-then
-Open [http://localhost:5173]
-
 ## Try Lost Byte website 
 Open https://abdulrahman-barashid.github.io/Lost-Byte-senior-project-website/
 Feedbacks are much appreciated. 
