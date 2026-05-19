@@ -5,9 +5,16 @@ import "../../styles/FeaturesPage.css";
 
 function BrainIcon({ className }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
-      stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
-      className={className}>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      className={className}
+    >
       <path d="M12 5a3 3 0 1 0-5.997.125 4 4 0 0 0-2.526 5.77 4 4 0 0 0 .556 6.588A4 4 0 1 0 12 18Z" />
       <path d="M12 5a3 3 0 1 1 5.997.125 4 4 0 0 1 2.526 5.77 4 4 0 0 1-.556 6.588A4 4 0 1 1 12 18Z" />
       <path d="M15 13a4.5 4.5 0 0 1-3-4 4.5 4.5 0 0 1-3 4" />
@@ -22,27 +29,54 @@ function BrainIcon({ className }) {
 }
 
 const PUZZLE_CATEGORIES = [
-  { key: "features.cat_programming",   count: "30+" },
-  { key: "features.cat_networking",    count: "25+" },
-  { key: "features.cat_databases",     count: "20+" },
-  { key: "features.cat_cybersecurity", count: "35+" },
-  { key: "features.cat_algorithms",    count: "28+" },
-  { key: "features.cat_system_design", count: "22+" },
-  { key: "features.cat_cloud",         count: "18+" },
+  { key: "features.cat_programming", count: "1" },
+  { key: "features.cat_Others", count: "2" },
 ];
 
 export function FeaturesPage() {
   const { t } = useLanguage();
 
   const features = [
-    { icon: BrainIcon, title: t("features.educational_puzzles"), description: t("features.educational_puzzles_desc") },
-    { icon: Zap,       title: t("features.intense_atmosphere"),  description: t("features.intense_atmosphere_desc") },
-    { icon: Users,     title: t("features.global_leaderboard"),  description: t("features.global_leaderboard_desc") },
-    { icon: Lightbulb, title: t("features.difficulty_levels"),   description: t("features.difficulty_levels_desc") },
-    { icon: Target,    title: t("features.achievement_system"),  description: t("features.achievement_system_desc") },
-    { icon: Clock,     title: t("features.time_attack"),         description: t("features.time_attack_desc") },
-    { icon: Shield,    title: t("features.safe_learning"),       description: t("features.safe_learning_desc") },
-    { icon: Users,     title: t("features.story_driven"),        description: t("features.story_driven_desc") },
+    {
+      icon: BrainIcon,
+      title: t("features.educational_puzzles"),
+      description: t("features.educational_puzzles_desc"),
+    },
+    {
+      icon: Zap,
+      title: t("features.intense_atmosphere"),
+      description: t("features.intense_atmosphere_desc"),
+    },
+    {
+      icon: Users,
+      title: t("features.global_leaderboard"),
+      description: t("features.global_leaderboard_desc"),
+    },
+    {
+      icon: Lightbulb,
+      title: t("features.difficulty_levels"),
+      description: t("features.difficulty_levels_desc"),
+    },
+    {
+      icon: Target,
+      title: t("features.achievement_system"),
+      description: t("features.achievement_system_desc"),
+    },
+    {
+      icon: Clock,
+      title: t("features.time_attack"),
+      description: t("features.time_attack_desc"),
+    },
+    {
+      icon: Shield,
+      title: t("features.safe_learning"),
+      description: t("features.safe_learning_desc"),
+    },
+    {
+      icon: Users,
+      title: t("features.story_driven"),
+      description: t("features.story_driven_desc"),
+    },
   ];
 
   return (
@@ -85,7 +119,9 @@ export function FeaturesPage() {
             viewport={{ once: true }}
             className="features-categories-card"
           >
-            <h2 className="features-categories-title">{t("features.puzzle_categories")}</h2>
+            <h2 className="features-categories-title">
+              {t("features.puzzle_categories")}
+            </h2>
             <div className="features-categories-grid">
               {PUZZLE_CATEGORIES.map((category, index) => (
                 <motion.div
@@ -97,7 +133,9 @@ export function FeaturesPage() {
                   className="features-category-item"
                 >
                   <p className="features-category-name">{t(category.key)}</p>
-                  <p className="features-category-count">{category.count} {t("puzzle")}</p>
+                  <p className="features-category-count">
+                    {t("features.puzzle_count")} {category.count}
+                  </p>
                 </motion.div>
               ))}
             </div>

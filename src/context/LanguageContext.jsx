@@ -93,12 +93,8 @@ const translations = {
     // Features page
     "features.puzzle_categories": "Puzzle Categories",
     "features.cat_programming":     "Programming",
-    "features.cat_networking":      "Networking",
-    "features.cat_databases":       "Databases",
-    "features.cat_cybersecurity":   "Cybersecurity",
-    "features.cat_algorithms":      "Algorithms",
-    "features.cat_system_design":   "System Design",
-    "features.cat_cloud":           "Cloud Computing",
+    "features.cat_Others":      "Others",
+    "features.puzzle_count": "Number of Puzzles",
 
     // Support
     "support.title": "Contact Support",
@@ -241,12 +237,8 @@ const translations = {
     // Features page
     "features.puzzle_categories": "فئات الألغاز",
   "features.cat_programming":     "البرمجة",
-  "features.cat_networking":      "الشبكات",
-  "features.cat_databases":       "قواعد البيانات",
-  "features.cat_cybersecurity":   "الأمن السيبراني",
-  "features.cat_algorithms":      "الخوارزميات",
-  "features.cat_system_design":   "تصميم الأنظمة",
-  "features.cat_cloud":           "الحوسبة السحابية",
+  "features.cat_Others":      "أخرى",
+  "features.puzzle_count": "عدد الألغاز",
 
     // Support
     "support.title": "تواصل مع الدعم",
