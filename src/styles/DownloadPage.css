@@ -99,7 +99,7 @@
 }
 .download-otp-input:focus { box-shadow: 0 0 0 2px rgb(34, 197, 94); }
 
-.download-otp-error  { color: rgb(239, 68, 68); font-size: 0.875rem; margin-bottom: 0.75rem; }
+.download-otp-error { color: rgb(239, 68, 68); font-size: 0.875rem; margin-bottom: 0.75rem; }
 
 .download-otp-back-btn {
   width: 100%;
@@ -167,6 +167,25 @@
 }
 .download-paypal-btn:hover { background-color: #003087; }
 
+/* Disabled PayPal button when no keys available */
+.download-paypal-btn-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Notice shown under disabled PayPal button */
+.download-keys-unavailable-notice {
+  margin-top: 0.75rem;
+  padding: 0.75rem 1rem;
+  background-color: rgba(234, 179, 8, 0.1);
+  border: 1px solid rgba(234, 179, 8, 0.3);
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  color: rgb(202, 138, 4);
+  text-align: center;
+}
+
 .download-secure-text { font-size: 0.75rem; text-align: center; color: var(--muted-foreground); margin-top: 1rem; }
 
 /* QR section */
@@ -176,9 +195,9 @@
   border-top: 1px solid var(--border);
   text-align: center;
 }
-.download-qr-label  { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.75rem; }
-.download-qr-img    { width: 10rem; height: 10rem; border-radius: 0.5rem; border: 1px solid var(--border); margin: 0 auto 0.5rem; display: block; }
-.download-qr-hint   { font-size: 0.75rem; color: var(--muted-foreground); }
+.download-qr-label { font-size: 0.875rem; font-weight: 500; margin-bottom: 0.75rem; }
+.download-qr-img   { width: 10rem; height: 10rem; border-radius: 0.5rem; border: 1px solid var(--border); margin: 0 auto 0.5rem; display: block; }
+.download-qr-hint  { font-size: 0.75rem; color: var(--muted-foreground); }
 
 /* OR divider */
 .download-divider { display: flex; align-items: center; gap: 1rem; max-width: 56rem; margin: 0 auto 2rem; }
@@ -195,10 +214,10 @@
   margin: 0 auto;
 }
 .download-sysreq-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 1rem; }
-.download-sysreq-grid { display: grid; gap: 1.5rem; }
+.download-sysreq-grid  { display: grid; gap: 1.5rem; }
 @media (min-width: 768px) { .download-sysreq-grid { grid-template-columns: repeat(2, 1fr); } }
-.download-sysreq-tier { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); margin-bottom: 0.5rem; }
-.download-sysreq-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; }
+.download-sysreq-tier  { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted-foreground); margin-bottom: 0.5rem; }
+.download-sysreq-list  { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 0.5rem; font-size: 0.875rem; }
 .download-sysreq-list li span { font-weight: 600; }
 
 /* Spinner */
@@ -209,3 +228,119 @@
   animation: download-spin 0.8s linear infinite;
 }
 @keyframes download-spin { to { transform: rotate(360deg); } }
+
+/* ── KEY REVEAL CARD ── */
+.download-key-reveal-card {
+  max-width: 36rem;
+  margin: 4rem auto;
+  background-color: var(--card);
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  border-radius: 0.75rem;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 30px rgba(34, 197, 94, 0.15);
+}
+
+.download-key-reveal-icon-wrap {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  color: rgb(34, 197, 94);
+}
+
+.download-key-reveal-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.download-key-reveal-desc {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 1.5rem;
+}
+.download-key-reveal-desc strong { color: var(--foreground); font-weight: 600; }
+
+/* Key display box */
+.download-key-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  background-color: var(--muted);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 0.875rem 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.download-key-text {
+  font-family: monospace;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgb(34, 197, 94);
+  word-break: break-all;
+}
+
+.download-key-copy-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.5rem 0.875rem;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  color: inherit;
+  flex-shrink: 0;
+  transition: background-color 0.2s;
+}
+.download-key-copy-btn:hover { background-color: var(--accent); }
+
+/* Redeem on Steam button */
+.download-steam-redeem-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  background-color: rgb(22, 163, 74);
+  color: white;
+  border: none;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-bottom: 1.5rem;
+}
+.download-steam-redeem-btn:hover { background-color: rgb(21, 128, 61); }
+
+/* Redemption steps */
+.download-key-steps {
+  text-align: left;
+  background-color: var(--muted);
+  border-radius: 0.5rem;
+  padding: 1rem 1.25rem;
+}
+.download-key-steps-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem;
+}
+.download-key-steps-list {
+  padding-left: 1.25rem;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+}
+.download-key-steps-list strong { color: var(--foreground); }

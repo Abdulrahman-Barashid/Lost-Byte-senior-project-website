@@ -25,7 +25,8 @@ const translations = {
 
     // About
     "about.title": "About Lost Byte",
-    "about.subtitle": "A horror-themed game that challenges your IT knowledge while keeping you on edge",
+    "about.subtitle":
+      "A horror-themed game that challenges your IT knowledge while keeping you on edge",
     "about.story_title": "The Story",
     "about.story_p1":
       "You wake up in a corrupted digital realm where data has turned hostile. The only escape is solving IT puzzles that test your knowledge of programming, networking, cybersecurity, and computer science fundamentals.",
@@ -37,30 +38,45 @@ const translations = {
     "about.problem_solving": "Problem Solving",
     "about.problem_solving_desc": "Develop critical thinking under pressure",
     "about.competitive_learning": "Competitive Learning",
-    "about.competitive_learning_desc": "Compete on leaderboards and improve your skills",
+    "about.competitive_learning_desc":
+      "Compete on leaderboards and improve your skills",
     "about.why_title": 'Why "Lost Byte"?',
     "about.why_desc":
       "In computing, a lost byte can corrupt an entire system. In this game, you search for lost bytes — fragments of knowledge scattered across a corrupted network. Each puzzle represents missing information that, when understood, restores order. Here, knowledge is not just power — it is survival.",
 
     // Features
     "features.title": "Game Features",
-    "features.subtitle": "A blend of horror gameplay and educational IT challenges for a unique experience",
+    "features.subtitle":
+      "A blend of horror gameplay and educational IT challenges for a unique experience",
     "features.educational_puzzles": "Educational Puzzles",
-    "features.educational_puzzles_desc": "Solve real IT challenges covering programming, networking, databases, and cybersecurity.",
+    "features.educational_puzzles_desc":
+      "Solve real IT challenges covering programming, networking, databases, and cybersecurity.",
     "features.intense_atmosphere": "Immersive Atmosphere",
-    "features.intense_atmosphere_desc": "Tension-driven environments that create urgency as you race against time.",
+    "features.intense_atmosphere_desc":
+      "Tension-driven environments that create urgency as you race against time.",
     "features.global_leaderboard": "Global Leaderboard",
-    "features.global_leaderboard_desc": "Compete with players worldwide and track your ranking.",
+    "features.global_leaderboard_desc":
+      "Compete with players worldwide and track your ranking.",
     "features.difficulty_levels": "Multiple Difficulty Levels",
-    "features.difficulty_levels_desc": "Puzzles scale from beginner to expert to match your skill level.",
+    "features.difficulty_levels_desc":
+      "Puzzles scale from beginner to expert to match your skill level.",
     "features.achievement_system": "Achievement System",
-    "features.achievement_system_desc": "Unlock badges and rewards as you master different IT domains.",
+    "features.achievement_system_desc":
+      "Unlock badges and rewards as you master different IT domains.",
     "features.time_attack": "Time Attack Mode",
-    "features.time_attack_desc": "Race against the clock in speed-run challenges for bonus points.",
+    "features.time_attack_desc":
+      "Race against the clock in speed-run challenges for bonus points.",
     "features.safe_learning": "Safe Learning Environment",
-    "features.safe_learning_desc": "Build confidence by learning through gameplay with no real-world consequences.",
+    "features.safe_learning_desc":
+      "Build confidence by learning through gameplay with no real-world consequences.",
     "features.story_driven": "Story-Driven Gameplay",
-    "features.story_driven_desc": "Uncover the mystery behind the digital corruption through an engaging narrative.",
+    "features.story_driven_desc":
+      "Uncover the mystery behind the digital corruption through an engaging narrative.",
+    "features.puzzle_categories": "Puzzle Categories",
+    "features.cat_programming": "Programming",
+    "features.cat_Others": "Others",
+    "features.puzzle_count": "Number of Puzzles",
+    "features.puzzles": "Puzzles",
 
     // Leaderboard
     "leaderboard.title": "Global Leaderboard",
@@ -80,25 +96,20 @@ const translations = {
     "gallery.minimum": "Minimum",
     "gallery.recommended": "Recommended",
     "gallery.img1_title": "Main Menu",
-    "gallery.img1_desc":  "The haunting main menu interface",
+    "gallery.img1_desc": "The haunting main menu interface",
     "gallery.img2_title": "Puzzle Room",
-    "gallery.img2_desc":  "Solve IT puzzles to progress",
+    "gallery.img2_desc": "Solve IT puzzles to progress",
     "gallery.img3_title": "Coding Challenge",
-    "gallery.img3_desc":  "Debug corrupted code",
+    "gallery.img3_desc": "Debug corrupted code",
     "gallery.img4_title": "Network Maze",
-    "gallery.img4_desc":  "Navigate through network topology",
+    "gallery.img4_desc": "Navigate through network topology",
     "gallery.img5_title": "Boss Encounter",
-    "gallery.img5_desc":  "Face the ultimate challenge",
-
-    // Features page
-    "features.puzzle_categories": "Puzzle Categories",
-    "features.cat_programming":     "Programming",
-    "features.cat_Others":      "Others",
-    "features.puzzle_count": "Number of Puzzles",
+    "gallery.img5_desc": "Face the ultimate challenge",
 
     // Support
     "support.title": "Contact Support",
-    "support.description": "Have a question or need help? Send us a message and we will get back to you as soon as possible.",
+    "support.description":
+      "Have a question or need help? Send us a message and we will get back to you as soon as possible.",
     "support.name": "Your Name",
     "support.name_placeholder": "Abdulrahman Barashid",
     "support.email": "Your Email",
@@ -108,7 +119,8 @@ const translations = {
     "support.submit": "Send Message",
     "support.submitting": "Sending...",
     "support.success": "Message sent!",
-    "support.success_description": "We will get back to you as soon as possible.",
+    "support.success_description":
+      "We will get back to you as soon as possible.",
     "support.error_fill_all": "Please fill in all fields",
     "support.contact_email": "Email",
     "support.contact_response": "Response Time",
@@ -118,15 +130,18 @@ const translations = {
 
     // Download
     "download.title": "Download Lost Byte",
-    "download.description": "Get started with Lost Byte and put your IT knowledge to the test.",
+    "download.description":
+      "Get started with Lost Byte and put your IT knowledge to the test.",
     "download.kau_student": "KAU Student?",
-    "download.kau_description": "Students with a @stu.kau.edu.sa email get free access.",
+    "download.kau_description":
+      "Students with a @stu.kau.edu.sa email get free access.",
     "download.verify_email": "Verify Your Student Email",
-    "download.email_placeholder": "your.id@stu.kau.edu.sa",
+    "download.email_placeholder": "email@stu.kau.edu.sa",
     "download.verify": "Verify & Download",
     "download.verifying": "Verifying...",
     "download.free_access": "Free Access",
-    "download.free_access_desc": "KAU students receive lifetime access at no cost upon verification.",
+    "download.free_access_desc":
+      "KAU students receive lifetime access at no cost upon verification.",
     "download.or": "OR",
     "download.purchase": "Purchase License",
     "download.price": "$9.99",
@@ -138,13 +153,54 @@ const translations = {
     "download.minimum": "Minimum",
     "download.recommended": "Recommended",
     "download.verification_success": "Email verified!",
-    "download.verification_success_description": "Your download will start shortly.",
+    "download.verification_success_description":
+      "Your Steam key is being prepared.",
     "download.verification_failed": "Verification failed",
-    "download.verification_failed_description": "Please use a valid @stu.kau.edu.sa email address.",
+    "download.verification_failed_description":
+      "Please use a valid @stu.kau.edu.sa email address.",
     "download.payment_success": "Payment successful!",
-    "download.payment_success_description": "Your download will start shortly.",
+    "download.payment_success_description":
+      "Your Steam key will be sent to your email.",
     "download.scan_to_pay": "Or scan to pay",
     "download.scan_qr_desc": "Scan with your camera app to pay via PayPal",
+    "download.feature_full_access": "Full game access",
+    "download.feature_puzzles": "IT puzzles",
+    "download.feature_updates": "Lifetime updates",
+    "download.feature_support": "Priority support",
+
+    // Download — keys not available
+    "download.keys_unavailable_title": "Steam keys are not available yet.",
+    "download.keys_unavailable_desc":
+      "We are still setting up. Please try again later or contact us at lostbyte.support@gmail.com",
+    "download.keys_unavailable_notice":
+      "⚠️ Steam keys are not available yet. Please check back later.",
+
+    // Download — key reveal screen
+    "download.key_reveal_title": "Your Steam Key 🎮",
+    "download.key_reveal_desc": "This key has also been emailed to",
+    "download.key_copy": "Copy",
+    "download.key_copied": "Key copied to clipboard!",
+    "download.key_redeem": "Redeem on Steam",
+    "download.key_how_title": "How to redeem:",
+    "download.key_step1": "Open Steam on your PC",
+    "download.key_step2": 'Click "Games" in the top menu',
+    "download.key_step3": 'Click "Activate a Product on Steam"',
+    "download.key_step4": "Paste your key and click Next",
+
+    // Download — already claimed
+    "download.already_have_key": "You already have a Steam key!",
+    "download.already_have_key_desc":
+      "We already sent a key to this email. Please check your inbox and spam folder.",
+
+    // Download — OTP
+    "download.otp_sent": "Code sent!",
+    "download.otp_sent_desc": "A 6-digit code was sent to",
+    "download.otp_placeholder": "Enter 6-digit code",
+    "download.otp_error": "Incorrect code. Please try again.",
+    "download.otp_confirm": "Confirm & Get Steam Key",
+    "download.otp_getting_key": "Getting your key...",
+    "download.otp_back": "← Use a different email",
+    "download.otp_failed": "Failed to send code. Please try again.",
   },
 
   ar: {
@@ -188,27 +244,39 @@ const translations = {
 
     // Features
     "features.title": "مميزات اللعبة",
-    "features.subtitle": "مزيج من ألعاب الرعب والتحديات التعليمية لتقنية المعلومات",
+    "features.subtitle":
+      "مزيج من ألعاب الرعب والتحديات التعليمية لتقنية المعلومات",
     "features.educational_puzzles": "ألغاز تعليمية",
-    "features.educational_puzzles_desc": "حل تحديات تقنية تغطي البرمجة والشبكات وقواعد البيانات والأمن السيبراني.",
+    "features.educational_puzzles_desc":
+      "حل تحديات تقنية تغطي البرمجة والشبكات وقواعد البيانات والأمن السيبراني.",
     "features.intense_atmosphere": "أجواء غامرة",
-    "features.intense_atmosphere_desc": "بيئات مشحونة تخلق التوتر بينما تتسابق مع الزمن.",
+    "features.intense_atmosphere_desc":
+      "بيئات مشحونة تخلق التوتر بينما تتسابق مع الزمن.",
     "features.global_leaderboard": "لوحة متصدرين عالمية",
-    "features.global_leaderboard_desc": "تنافس مع لاعبين حول العالم وتتبع ترتيبك.",
+    "features.global_leaderboard_desc":
+      "تنافس مع لاعبين حول العالم وتتبع ترتيبك.",
     "features.difficulty_levels": "مستويات صعوبة متعددة",
-    "features.difficulty_levels_desc": "ألغاز تتناسب مع مستواك من المبتدئ إلى الخبير.",
+    "features.difficulty_levels_desc":
+      "ألغاز تتناسب مع مستواك من المبتدئ إلى الخبير.",
     "features.achievement_system": "نظام إنجازات",
-    "features.achievement_system_desc": "افتح الشارات والمكافآت بينما تتقن مجالات التقنية.",
+    "features.achievement_system_desc":
+      "افتح الشارات والمكافآت بينما تتقن مجالات التقنية.",
     "features.time_attack": "وضع الهجوم الزمني",
     "features.time_attack_desc": "تسابق مع الوقت للحصول على نقاط إضافية.",
     "features.safe_learning": "بيئة تعلم آمنة",
     "features.safe_learning_desc": "ابنِ ثقتك وتعلم دون عواقب حقيقية.",
     "features.story_driven": "لعب مدفوع بالقصة",
     "features.story_driven_desc": "اكتشف غموض الفساد الرقمي من خلال سرد جذاب.",
+    "features.puzzle_categories": "فئات الألغاز",
+    "features.cat_programming": "البرمجة",
+    "features.cat_Others": "أخرى",
+    "features.puzzle_count": "عدد الألغاز",
+    "features.puzzles": "ألغاز",
 
     // Leaderboard
     "leaderboard.title": "لوحة المتصدرين العالمية",
-    "leaderboard.subtitle": "تنافس مع لاعبين حول العالم للحصول على المركز الأول",
+    "leaderboard.subtitle":
+      "تنافس مع لاعبين حول العالم للحصول على المركز الأول",
     "leaderboard.rank": "المرتبة",
     "leaderboard.player": "اللاعب",
     "leaderboard.score": "النتيجة",
@@ -224,25 +292,20 @@ const translations = {
     "gallery.minimum": "الحد الأدنى",
     "gallery.recommended": "الموصى به",
     "gallery.img1_title": "القائمة الرئيسية",
-    "gallery.img1_desc":  "واجهة القائمة الرئيسية المرعبة",
+    "gallery.img1_desc": "واجهة القائمة الرئيسية المرعبة",
     "gallery.img2_title": "غرفة الألغاز",
-    "gallery.img2_desc":  "حل ألغاز تقنية المعلومات للتقدم",
+    "gallery.img2_desc": "حل ألغاز تقنية المعلومات للتقدم",
     "gallery.img3_title": "تحدي البرمجة",
-    "gallery.img3_desc":  "اكتشف الأخطاء في الكود التالف",
+    "gallery.img3_desc": "اكتشف الأخطاء في الكود التالف",
     "gallery.img4_title": "متاهة الشبكة",
-    "gallery.img4_desc":  "تنقل عبر طوبولوجيا الشبكة",
+    "gallery.img4_desc": "تنقل عبر طوبولوجيا الشبكة",
     "gallery.img5_title": "مواجهة الزعيم",
-    "gallery.img5_desc":  "واجه التحدي الأقصى",
-
-    // Features page
-    "features.puzzle_categories": "فئات الألغاز",
-  "features.cat_programming":     "البرمجة",
-  "features.cat_Others":      "أخرى",
-  "features.puzzle_count": "عدد الألغاز",
+    "gallery.img5_desc": "واجه التحدي الأقصى",
 
     // Support
     "support.title": "تواصل مع الدعم",
-    "support.description": "هل لديك سؤال؟ أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.",
+    "support.description":
+      "هل لديك سؤال؟ أرسل لنا رسالة وسنرد عليك في أقرب وقت ممكن.",
     "support.name": "اسمك",
     "support.name_placeholder": "محمد عبدالله",
     "support.email": "بريدك الإلكتروني",
@@ -262,46 +325,94 @@ const translations = {
 
     // Download
     "download.title": "تحميل لوست بايت",
-    "download.description": "ابدأ رحلتك مع لوست بايت واختبر معرفتك بتقنية المعلومات.",
+    "download.description":
+      "ابدأ رحلتك مع لوست بايت واختبر معرفتك بتقنية المعلومات.",
     "download.kau_student": "طالب في جامعة الملك عبدالعزيز؟",
-    "download.kau_description": "الطلاب بعنوان @stu.kau.edu.sa يحصلون على وصول مجاني.",
+    "download.kau_description":
+      "الطلاب بعنوان @stu.kau.edu.sa يحصلون على وصول مجاني.",
     "download.verify_email": "تحقق من بريدك الجامعي",
-    "download.email_placeholder": "your.id@stu.kau.edu.sa",
+    "download.email_placeholder": "الإيميل@stu.kau.edu.sa",
     "download.verify": "تحقق وحمّل",
     "download.verifying": "جارٍ التحقق...",
     "download.free_access": "وصول مجاني",
-    "download.free_access_desc": "يحصل طلاب جامعة الملك عبدالعزيز على وصول مدى الحياة مجاناً عند التحقق.",
+    "download.free_access_desc":
+      "يحصل طلاب جامعة الملك عبدالعزيز على وصول مدى الحياة مجاناً عند التحقق.",
     "download.or": "أو",
     "download.purchase": "شراء الترخيص",
     "download.price": "$9.99",
     "download.purchase_description": "دفعة واحدة للوصول مدى الحياة",
     "download.buy_now": "اشترِ الآن",
     "download.processing": "جارٍ المعالجة...",
-    "download.secure_payment": "دفع آمن عبر Stripe",
+    "download.secure_payment": "دفع آمن عبر PayPal",
     "download.system_req": "متطلبات النظام",
     "download.minimum": "الحد الأدنى",
     "download.recommended": "الموصى به",
     "download.verification_success": "تم التحقق!",
-    "download.verification_success_description": "سيبدأ التحميل قريباً.",
+    "download.verification_success_description":
+      "جارٍ تجهيز مفتاح ستيم الخاص بك.",
     "download.verification_failed": "فشل التحقق",
-    "download.verification_failed_description": "يرجى استخدام بريد @stu.kau.edu.sa صالح.",
+    "download.verification_failed_description":
+      "يرجى استخدام بريد @stu.kau.edu.sa صالح.",
     "download.payment_success": "تمت عملية الدفع!",
-    "download.payment_success_description": "سيبدأ التحميل قريباً.",
+    "download.payment_success_description":
+      "سيتم إرسال مفتاح ستيم إلى بريدك الإلكتروني.",
     "download.scan_to_pay": "أو امسح للدفع",
     "download.scan_qr_desc": "امسح الرمز بكاميرا هاتفك للدفع عبر PayPal",
+    "download.feature_full_access": "وصول كامل للعبة",
+    "download.feature_puzzles": "ألغاز تقنية المعلومات",
+    "download.feature_updates": "تحديثات مدى الحياة",
+    "download.feature_support": "أولوية في الدعم",
+
+    // Download — keys not available
+    "download.keys_unavailable_title": "مفاتيح ستيم غير متوفرة بعد.",
+    "download.keys_unavailable_desc":
+      "لا تزال الإعدادات جارية. يرجى المحاولة لاحقاً أو التواصل معنا على lostbyte.support@gmail.com",
+    "download.keys_unavailable_notice":
+      "⚠️ مفاتيح ستيم غير متوفرة بعد. يرجى التحقق لاحقاً.",
+
+    // Download — key reveal screen
+    "download.key_reveal_title": "مفتاح ستيم الخاص بك 🎮",
+    "download.key_reveal_desc": "تم إرسال هذا المفتاح أيضاً إلى بريدك",
+    "download.key_copy": "نسخ",
+    "download.key_copied": "تم نسخ المفتاح!",
+    "download.key_redeem": "استرداد على ستيم",
+    "download.key_how_title": "طريقة الاسترداد:",
+    "download.key_step1": "افتح Steam على جهاز الكمبيوتر",
+    "download.key_step2": "اضغط على Games في القائمة العلوية",
+    "download.key_step3": "اضغط على Activate a Product on Steam",
+    "download.key_step4": "الصق مفتاحك واضغط Next",
+
+    // Download — already claimed
+    "download.already_have_key": "لديك بالفعل مفتاح ستيم!",
+    "download.already_have_key_desc":
+      "تم إرسال مفتاح إلى هذا البريد مسبقاً. يرجى التحقق من صندوق الوارد والبريد المزعج.",
+
+    // Download — OTP
+    "download.otp_sent": "تم إرسال الرمز!",
+    "download.otp_sent_desc": "تم إرسال رمز مكون من 6 أرقام إلى",
+    "download.otp_placeholder": "أدخل الرمز المكون من 6 أرقام",
+    "download.otp_error": "الرمز غير صحيح. يرجى المحاولة مرة أخرى.",
+    "download.otp_confirm": "تأكيد والحصول على مفتاح ستيم",
+    "download.otp_getting_key": "جارٍ الحصول على مفتاحك...",
+    "download.otp_back": "← استخدام بريد إلكتروني مختلف",
+    "download.otp_failed": "فشل إرسال الرمز. يرجى المحاولة مرة أخرى.",
   },
 };
 
 export function LanguageProvider({ children }) {
   const [language, setLanguage] = useState("en");
 
-  const toggleLanguage = () => setLanguage((prev) => (prev === "en" ? "ar" : "en"));
+  const toggleLanguage = () =>
+    setLanguage((prev) => (prev === "en" ? "ar" : "en"));
 
   const t = (key) => translations[language][key] || key;
 
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage, t }}>
-      <div dir={language === "ar" ? "rtl" : "ltr"} className={language === "ar" ? "font-arabic" : ""}>
+      <div
+        dir={language === "ar" ? "rtl" : "ltr"}
+        className={language === "ar" ? "font-arabic" : ""}
+      >
         {children}
       </div>
     </LanguageContext.Provider>
@@ -310,6 +421,7 @@ export function LanguageProvider({ children }) {
 
 export function useLanguage() {
   const context = useContext(LanguageContext);
-  if (!context) throw new Error("useLanguage must be used within a LanguageProvider");
+  if (!context)
+    throw new Error("useLanguage must be used within a LanguageProvider");
   return context;
 }

@@ -9,24 +9,32 @@ import {
   X as CloseIcon,
   GraduationCap,
   DollarSign,
+  Key,
+  Copy,
+  ExternalLink,
 } from "lucide-react";
 import { toast, Toaster } from "sonner";
 import { useLanguage } from "../../context/LanguageContext";
+import { giveKauKey, givePaypalKey } from "../../lib/steamKeys";
 import qrcode from "../../assets/images/qrcode.png";
 import "../../styles/DownloadPage.css";
 
 const PAYPAL_PAYMENT_URL = "https://www.paypal.com/ncp/payment/WHLUQU9TVH6GU";
-const GAME_DOWNLOAD_URL = "https://drive.google.com";
+const STEAM_REDEEM_URL = "https://store.steampowered.com/account/registerkey";
+
+// ── SET THIS TO true WHEN STEAM KEYS ARE READY IN FIRESTORE ──
+const KEYS_AVAILABLE = false;
+// ─────────────────────────────────────────────────────────────
 
 function generateOTP() {
   return Math.floor(100000 + Math.random() * 900000).toString();
 }
 
 const PURCHASE_FEATURES = [
-  "Full game access",
-  "IT puzzles",
-  "Lifetime updates",
-  "Priority support",
+  "download.feature_full_access",
+  "download.feature_puzzles",
+  "download.feature_updates",
+  "download.feature_support",
 ];
 
 const SYSTEM_REQUIREMENTS = {
@@ -46,71 +54,267 @@ const SYSTEM_REQUIREMENTS = {
 
 export function DownloadPage() {
   const { t } = useLanguage();
+
+  const [activeFlow, setActiveFlow] = useState("kau");
   const [email, setEmail] = useState("");
   const [isVerifying, setIsVerifying] = useState(false);
   const [otpSent, setOtpSent] = useState(false);
   const [otpInput, setOtpInput] = useState("");
   const [generatedOTP, setGeneratedOTP] = useState("");
   const [otpError, setOtpError] = useState("");
+  const [isFetchingKey, setIsFetchingKey] = useState(false);
+  const [steamKey, setSteamKey] = useState("");
+  const [claimedEmail, setClaimedEmail] = useState("");
+  const [paypalClicked, setPaypalClicked] = useState(false);
 
-  const handleVerifyEmail = async (e) => {
+  // Reset form back to email input
+  function resetForm() {
+    setEmail("");
+    setOtpSent(false);
+    setOtpInput("");
+    setGeneratedOTP("");
+    setOtpError("");
+  }
+
+  // STEP 1: Validate email then send OTP
+  const handleVerifyEmail = async (e, flow) => {
     e.preventDefault();
-    if (!email) {
-      toast.error("Please enter your email");
+    setActiveFlow(flow);
+
+    if (!email.trim()) {
+      toast.error("Please enter your email.");
       return;
     }
 
-    const isKauEmail = email.toLowerCase().endsWith("@stu.kau.edu.sa");
-    if (!isKauEmail) {
-      toast.error(t("download.verification_failed"), {
-        description: t("download.verification_failed_description"),
-        cancel: { label: <CloseIcon className="h-4 w-4" />, onClick: () => {} },
+    // Block everything if keys are not available yet
+    // This prevents wasting EmailJS quota when there is nothing to give
+    if (!KEYS_AVAILABLE) {
+      toast.error(t("download.keys_unavailable_title"), {
+        description: t("download.keys_unavailable_desc"),
+        duration: 8000,
+        closeButton: true,
       });
       return;
+    }
+
+    // KAU: must be @stu.kau.edu.sa with valid username
+    if (flow === "kau") {
+      const kauRegex = /^[a-zA-Z0-9._%+-]+@stu\.kau\.edu\.sa$/;
+      if (!kauRegex.test(email.toLowerCase())) {
+        toast.error(t("download.verification_failed"), {
+          description: t("download.verification_failed_description"),
+          cancel: {
+            label: <CloseIcon className="h-4 w-4" />,
+            onClick: () => {},
+          },
+        });
+        return;
+      }
+    }
+
+    // PayPal: any valid email format
+    if (flow === "paypal") {
+      const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+      if (!emailRegex.test(email.toLowerCase())) {
+        toast.error("Please enter a valid email address.");
+        return;
+      }
     }
 
     setIsVerifying(true);
-    const otp = generateOTP();
-    setGeneratedOTP(otp);
 
     try {
+      const otp = generateOTP();
+      setGeneratedOTP(otp);
+
       await emailjs.send(
         import.meta.env.VITE_EMAILJS_SERVICE_ID,
         import.meta.env.VITE_EMAILJS_OTP_TEMPLATE,
-        { to_email: email, otp: otp },
+        { to_email: email, otp },
       );
+
       setOtpSent(true);
-      toast.success("OTP sent!", {
+      toast.success("Code sent!", {
         description: `A 6-digit code was sent to ${email}`,
       });
-    } catch (err) {
-      toast.error("Failed to send OTP. Please try again.");
-      console.error(err);
+    } catch (error) {
+      console.error("OTP send error:", error);
+      toast.error("Failed to send code. Please try again.");
     } finally {
       setIsVerifying(false);
     }
   };
 
-  const handleVerifyOTP = () => {
-    if (otpInput === generatedOTP) {
-      setOtpError("");
-      toast.success(t("download.verification_success"), {
-        description: t("download.verification_success_description"),
-        cancel: { label: <CloseIcon className="h-4 w-4" />, onClick: () => {} },
-      });
-      window.open(GAME_DOWNLOAD_URL, "_blank");
-      setOtpSent(false);
-      setOtpInput("");
-      setEmail("");
-    } else {
+  // STEP 2: Verify OTP → fetch key from Firestore → email key
+  const handleVerifyOTP = async () => {
+    if (otpInput !== generatedOTP) {
       setOtpError("Incorrect code. Please try again.");
+      return;
+    }
+
+    setOtpError("");
+    setIsFetchingKey(true);
+
+    try {
+      let result;
+
+      if (activeFlow === "kau") {
+        // One free key per KAU email ever
+        result = await giveKauKey(email);
+      } else {
+        // One key per payment — no quota limit
+        result = await givePaypalKey(email);
+      }
+
+      if (result.status === "already_claimed") {
+        toast.info("You already have a Steam key!", {
+          description:
+            "We already sent a key to this email. Please check your inbox and spam folder.",
+          duration: 8000,
+        });
+        resetForm();
+        return;
+      }
+
+      if (result.status === "no_keys") {
+        toast.error(t("download.keys_unavailable_title"), {
+          description: t("download.keys_unavailable_desc"),
+          duration: 8000,
+          closeButton: true,
+        });
+        resetForm();
+        return;
+      }
+
+      if (result.status === "error") {
+        toast.error("Something went wrong. Please try again.");
+        return;
+      }
+
+      if (result.status === "ok") {
+        // Email the key to the user
+        try {
+          await emailjs.send(
+            import.meta.env.VITE_EMAILJS_SERVICE_ID,
+            import.meta.env.VITE_EMAILJS_STEAM_TEMPLATE,
+            {
+              to_email: email,
+              steam_key: result.key,
+              redeem_url: STEAM_REDEEM_URL,
+            },
+          );
+          toast.success("Steam key sent to your email!", {
+            description: "Check your inbox. Your key is also shown below.",
+          });
+        } catch (emailError) {
+          // Key is saved in Firestore — user can still copy from screen
+          console.error("Steam key email failed:", emailError);
+          toast.error(
+            "Email failed — please copy your key from the screen below!",
+          );
+        }
+
+        setClaimedEmail(email);
+        setSteamKey(result.key);
+      }
+    } catch (error) {
+      console.error("handleVerifyOTP error:", error);
+      toast.error("Something went wrong. Please try again.");
+    } finally {
+      setIsFetchingKey(false);
     }
   };
 
-  const handlePurchase = () => {
-    window.open(PAYPAL_PAYMENT_URL, "_blank");
+  // Copy key to clipboard
+  const handleCopyKey = async () => {
+    try {
+      await navigator.clipboard.writeText(steamKey);
+      toast.success("Key copied to clipboard!");
+    } catch {
+      toast.error("Could not copy. Please select and copy the key manually.");
+    }
   };
 
+  // PayPal Buy Now — disabled until keys are ready
+  const handlePurchase = () => {
+    toast.error("Steam keys are not available yet.", {
+      description:
+        "We are still setting up. Please check back later or contact us at lostbyte.support@gmail.com",
+      duration: 8000,
+    });
+  };
+
+  // KEY REVEAL SCREEN — shown after key is successfully claimed
+  if (steamKey) {
+    return (
+      <>
+        <Toaster position="top-right" />
+        <div className="download-page">
+          <div className="download-container">
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4 }}
+              className="download-key-reveal-card"
+            >
+              <div className="download-key-reveal-icon-wrap">
+                <Key className="h-14 w-14" />
+              </div>
+
+              <h2 className="download-key-reveal-title">Your Steam Key 🎮</h2>
+
+              <p className="download-key-reveal-desc">
+                This key has also been emailed to{" "}
+                <strong>{claimedEmail}</strong>
+              </p>
+
+              {/* Key display + copy button */}
+              <div className="download-key-box">
+                <span className="download-key-text">{steamKey}</span>
+                <button
+                  onClick={handleCopyKey}
+                  className="download-key-copy-btn"
+                >
+                  <Copy className="h-4 w-4" />
+                  Copy
+                </button>
+              </div>
+
+              {/* Redeem on Steam button */}
+              <a
+                href={STEAM_REDEEM_URL}
+                target="_blank"
+                rel="noreferrer"
+                className="download-steam-redeem-btn"
+              >
+                <ExternalLink className="h-5 w-5" />
+                Redeem on Steam
+              </a>
+
+              {/* Step by step instructions */}
+              <div className="download-key-steps">
+                <p className="download-key-steps-title">How to redeem:</p>
+                <ol className="download-key-steps-list">
+                  <li>Open Steam on your PC</li>
+                  <li>
+                    Click <strong>Games</strong> in the top menu
+                  </li>
+                  <li>
+                    Click <strong>Activate a Product on Steam</strong>
+                  </li>
+                  <li>
+                    Paste your key and click <strong>Next</strong>
+                  </li>
+                </ol>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </>
+    );
+  }
+
+  // MAIN PAGE
   return (
     <>
       <Toaster position="top-right" />
@@ -131,9 +335,8 @@ export function DownloadPage() {
             <p className="download-desc">{t("download.description")}</p>
           </motion.div>
 
-          {/* Download options */}
           <div className="download-options-grid">
-            {/* KAU Student card */}
+            {/* ── KAU STUDENT CARD ── */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -152,22 +355,25 @@ export function DownloadPage() {
                 </div>
               </div>
 
-              {!otpSent ? (
-                <form onSubmit={handleVerifyEmail} className="download-form">
+              {!otpSent || activeFlow !== "kau" ? (
+                <form
+                  onSubmit={(e) => handleVerifyEmail(e, "kau")}
+                  className="download-form"
+                >
                   <div>
-                    <label
-                      htmlFor="student-email"
-                      className="download-form-label"
-                    >
+                    <label htmlFor="kau-email" className="download-form-label">
                       {t("download.verify_email")}
                     </label>
                     <div className="download-input-wrap">
                       <Mail className="h-5 w-5 download-input-icon" />
                       <input
                         type="email"
-                        id="student-email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        id="kau-email"
+                        value={activeFlow === "kau" ? email : ""}
+                        onChange={(e) => {
+                          setActiveFlow("kau");
+                          setEmail(e.target.value);
+                        }}
                         placeholder={t("download.email_placeholder")}
                         required
                         className="download-input"
@@ -176,10 +382,10 @@ export function DownloadPage() {
                   </div>
                   <button
                     type="submit"
-                    disabled={isVerifying}
+                    disabled={isVerifying && activeFlow === "kau"}
                     className="download-verify-btn"
                   >
-                    {isVerifying ? (
+                    {isVerifying && activeFlow === "kau" ? (
                       <>
                         <div className="download-spinner" />
                         {t("download.verifying")}
@@ -195,7 +401,7 @@ export function DownloadPage() {
               ) : (
                 <div className="download-form">
                   <p className="download-otp-info">
-                    A 6-digit code was sent to <strong>{email}</strong>
+                    Code sent to <strong>{email}</strong>
                   </p>
                   <input
                     type="text"
@@ -211,19 +417,22 @@ export function DownloadPage() {
                   {otpError && <p className="download-otp-error">{otpError}</p>}
                   <button
                     onClick={handleVerifyOTP}
+                    disabled={isFetchingKey}
                     className="download-verify-btn"
                   >
-                    <CheckCircle className="h-5 w-5" />
-                    Confirm &amp; Download
+                    {isFetchingKey ? (
+                      <>
+                        <div className="download-spinner" />
+                        Getting your key...
+                      </>
+                    ) : (
+                      <>
+                        <Key className="h-5 w-5" />
+                        Confirm &amp; Get Steam Key
+                      </>
+                    )}
                   </button>
-                  <button
-                    onClick={() => {
-                      setOtpSent(false);
-                      setOtpInput("");
-                      setOtpError("");
-                    }}
-                    className="download-otp-back-btn"
-                  >
+                  <button onClick={resetForm} className="download-otp-back-btn">
                     ← Use a different email
                   </button>
                 </div>
@@ -242,7 +451,7 @@ export function DownloadPage() {
               </div>
             </motion.div>
 
-            {/* Purchase card */}
+            {/* ── PURCHASE CARD ── */}
             <motion.div
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -270,29 +479,44 @@ export function DownloadPage() {
                 {PURCHASE_FEATURES.map((feature) => (
                   <li key={feature}>
                     <CheckCircle className="h-4 w-4 feature-check" />
-                    <span>{feature}</span>
+                    <span>{t(feature)}</span>
                   </li>
                 ))}
               </ul>
 
-              <button onClick={handlePurchase} className="download-paypal-btn">
+              {/* Disabled until keys are ready */}
+              <button
+                onClick={handlePurchase}
+                className="download-paypal-btn download-paypal-btn-disabled"
+              >
                 <CreditCard className="h-5 w-5" />
                 {t("download.buy_now")}
               </button>
+
+              <p className="download-keys-unavailable-notice">
+                {t("download.keys_unavailable_notice")}
+              </p>
+
               <p className="download-secure-text">
                 {t("download.secure_payment")}
               </p>
 
-              {/* QR code */}
-              <div className="download-qr-section">
-                <p className="download-qr-label">{t("download.scan_to_pay")}</p>
-                <img
-                  src={qrcode}
-                  alt="PayPal QR Code"
-                  className="download-qr-img"
-                />
-                <p className="download-qr-hint">{t("download.scan_qr_desc")}</p>
-              </div>
+              {/* QR code — only shown when keys are available */}
+              {KEYS_AVAILABLE && (
+                <div className="download-qr-section">
+                  <p className="download-qr-label">
+                    {t("download.scan_to_pay")}
+                  </p>
+                  <img
+                    src={qrcode}
+                    alt="PayPal QR Code"
+                    className="download-qr-img"
+                  />
+                  <p className="download-qr-hint">
+                    {t("download.scan_qr_desc")}
+                  </p>
+                </div>
+              )}
             </motion.div>
           </div>
 
