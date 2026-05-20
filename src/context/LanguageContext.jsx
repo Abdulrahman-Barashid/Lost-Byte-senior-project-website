@@ -91,18 +91,23 @@ const translations = {
     "gallery.title": "Game Gallery",
     "gallery.subtitle": "Screenshots and artwork from Lost Byte",
     "gallery.click_to_view": "Click to view",
+    "gallery.photos": "photos",
     "gallery.close": "Close",
     "gallery.system_req": "System Requirements",
     "gallery.minimum": "Minimum",
     "gallery.recommended": "Recommended",
-    "gallery.img1_title": "Main Menu",
-    "gallery.img1_desc": "The haunting main menu interface",
-    "gallery.img2_title": "Puzzle Room",
-    "gallery.img2_desc": "Solve IT puzzles to progress",
-    "gallery.img3_title": "Coding Challenge",
-    "gallery.img3_desc": "Debug corrupted code",
-    "gallery.img5_title": "Boss Encounter",
-    "gallery.img5_desc": "Face the ultimate challenge",
+
+    // Gallery cards — card 1: Lobby images
+    "gallery.card1_title": "FCIT Building Lobby",
+    "gallery.card1_desc": "The haunting starts here — explore both floors of the lobby",
+
+    // Gallery cards — card 2: Puzzles
+    "gallery.card2_title": "Puzzle Rooms",
+    "gallery.card2_desc": "Face the Light Out and Painting puzzles to progress",
+
+    // Gallery cards — card 3: Programming + Monster
+    "gallery.card3_title": "Challenges & Threats",
+    "gallery.card3_desc": "Solve the programming puzzle and survive the monster encounter",
 
     // Support
     "support.title": "Contact Support",
@@ -117,8 +122,7 @@ const translations = {
     "support.submit": "Send Message",
     "support.submitting": "Sending...",
     "support.success": "Message sent!",
-    "support.success_description":
-      "We will get back to you as soon as possible.",
+    "support.success_description": "We will get back to you as soon as possible.",
     "support.error_fill_all": "Please fill in all fields",
     "support.contact_email": "Email",
     "support.contact_response": "Response Time",
@@ -151,14 +155,12 @@ const translations = {
     "download.minimum": "Minimum",
     "download.recommended": "Recommended",
     "download.verification_success": "Email verified!",
-    "download.verification_success_description":
-      "Your Steam key is being prepared.",
+    "download.verification_success_description": "Your Steam key is being prepared.",
     "download.verification_failed": "Verification failed",
     "download.verification_failed_description":
       "Please use a valid @stu.kau.edu.sa email address.",
     "download.payment_success": "Payment successful!",
-    "download.payment_success_description":
-      "Your Steam key will be sent to your email.",
+    "download.payment_success_description": "Your Steam key will be sent to your email.",
     "download.scan_to_pay": "Or scan to pay",
     "download.scan_qr_desc": "Scan with your camera app to pay via PayPal",
     "download.feature_full_access": "Full game access",
@@ -174,15 +176,11 @@ const translations = {
     "download.verify_email_btn": "Verify Email",
     "download.email_key_btn": "Email this key to",
     "download.key_sent_to": "Sent to",
-
-    // Download — keys not available
     "download.keys_unavailable_title": "Steam keys are not available yet.",
     "download.keys_unavailable_desc":
       "We are still setting up. Please try again later or contact us at lostbyte.support@gmail.com",
     "download.keys_unavailable_notice":
       "⚠️ Steam keys are not available yet. Please check back later.",
-
-    // Download — key reveal screen
     "download.key_reveal_title": "Your Steam Key 🎮",
     "download.key_reveal_desc": "This key has also been emailed to",
     "download.key_copy": "Copy",
@@ -193,13 +191,9 @@ const translations = {
     "download.key_step2": 'Click "Games" in the top menu',
     "download.key_step3": 'Click "Activate a Product on Steam"',
     "download.key_step4": "Paste your key and click Next",
-
-    // Download — already claimed
     "download.already_have_key": "You already have a Steam key!",
     "download.already_have_key_desc":
       "We already sent a key to this email. Please check your inbox and spam folder.",
-
-    // Download — OTP
     "download.otp_sent": "Code sent!",
     "download.otp_sent_desc": "A 6-digit code was sent to",
     "download.otp_placeholder": "Enter 6-digit code",
@@ -251,8 +245,7 @@ const translations = {
 
     // Features
     "features.title": "مميزات اللعبة",
-    "features.subtitle":
-      "مزيج من ألعاب الرعب والتحديات التعليمية لتقنية المعلومات",
+    "features.subtitle": "مزيج من ألعاب الرعب والتحديات التعليمية لتقنية المعلومات",
     "features.educational_puzzles": "ألغاز تعليمية",
     "features.educational_puzzles_desc":
       "حل تحديات تقنية تغطي البرمجة والشبكات وقواعد البيانات والأمن السيبراني.",
@@ -260,11 +253,9 @@ const translations = {
     "features.intense_atmosphere_desc":
       "بيئات مشحونة تخلق التوتر بينما تتسابق مع الزمن.",
     "features.global_leaderboard": "لوحة متصدرين عالمية",
-    "features.global_leaderboard_desc":
-      "تنافس مع لاعبين حول العالم وتتبع ترتيبك.",
+    "features.global_leaderboard_desc": "تنافس مع لاعبين حول العالم وتتبع ترتيبك.",
     "features.difficulty_levels": "مستويات صعوبة متعددة",
-    "features.difficulty_levels_desc":
-      "ألغاز تتناسب مع مستواك من المبتدئ إلى الخبير.",
+    "features.difficulty_levels_desc": "ألغاز تتناسب مع مستواك من المبتدئ إلى الخبير.",
     "features.achievement_system": "نظام إنجازات",
     "features.achievement_system_desc":
       "افتح الشارات والمكافآت بينما تتقن مجالات التقنية.",
@@ -282,8 +273,7 @@ const translations = {
 
     // Leaderboard
     "leaderboard.title": "لوحة المتصدرين العالمية",
-    "leaderboard.subtitle":
-      "تنافس مع لاعبين حول العالم للحصول على المركز الأول",
+    "leaderboard.subtitle": "تنافس مع لاعبين حول العالم للحصول على المركز الأول",
     "leaderboard.rank": "المرتبة",
     "leaderboard.player": "اللاعب",
     "leaderboard.score": "النتيجة",
@@ -294,18 +284,21 @@ const translations = {
     "gallery.title": "معرض اللعبة",
     "gallery.subtitle": "لقطات شاشة وأعمال فنية من لوست بايت",
     "gallery.click_to_view": "انقر للعرض",
+    "gallery.photos": "صور",
     "gallery.close": "إغلاق",
     "gallery.system_req": "متطلبات النظام",
     "gallery.minimum": "الحد الأدنى",
     "gallery.recommended": "الموصى به",
-    "gallery.img1_title": "القائمة الرئيسية",
-    "gallery.img1_desc": "واجهة القائمة الرئيسية المرعبة",
-    "gallery.img2_title": "غرفة الألغاز",
-    "gallery.img2_desc": "حل ألغاز تقنية المعلومات للتقدم",
-    "gallery.img3_title": "تحدي البرمجة",
-    "gallery.img3_desc": "اكتشف الأخطاء في الكود التالف",
-    "gallery.img5_title": "مواجهة الزعيم",
-    "gallery.img5_desc": "واجه التحدي الأقصى",
+
+    // Gallery cards
+    "gallery.card1_title": "ردهة مبنى الحاسبات",
+    "gallery.card1_desc": "هنا تبدأ المطاردة — استكشف طابقي الردهة",
+
+    "gallery.card2_title": "غرف الألغاز",
+    "gallery.card2_desc": "واجه لغز الأضواء ولغز اللوحة للمتابعة",
+
+    "gallery.card3_title": "التحديات والمخاطر",
+    "gallery.card3_desc": "حل لغز البرمجة وانجُ من مواجهة الوحش",
 
     // Support
     "support.title": "تواصل مع الدعم",
@@ -330,11 +323,9 @@ const translations = {
 
     // Download
     "download.title": "تحميل لوست بايت",
-    "download.description":
-      "ابدأ رحلتك مع لوست بايت واختبر معرفتك بتقنية المعلومات.",
+    "download.description": "ابدأ رحلتك مع لوست بايت واختبر معرفتك بتقنية المعلومات.",
     "download.kau_student": "طالب في جامعة الملك عبدالعزيز؟",
-    "download.kau_description":
-      "الطلاب بعنوان @stu.kau.edu.sa يحصلون على وصول مجاني.",
+    "download.kau_description": "الطلاب بعنوان @stu.kau.edu.sa يحصلون على وصول مجاني.",
     "download.verify_email": "تحقق من بريدك الجامعي",
     "download.email_placeholder": "الإيميل@stu.kau.edu.sa",
     "download.verify": "تحقق وحمّل",
@@ -353,14 +344,11 @@ const translations = {
     "download.minimum": "الحد الأدنى",
     "download.recommended": "الموصى به",
     "download.verification_success": "تم التحقق!",
-    "download.verification_success_description":
-      "جارٍ تجهيز مفتاح ستيم الخاص بك.",
+    "download.verification_success_description": "جارٍ تجهيز مفتاح ستيم الخاص بك.",
     "download.verification_failed": "فشل التحقق",
-    "download.verification_failed_description":
-      "يرجى استخدام بريد @stu.kau.edu.sa صالح.",
+    "download.verification_failed_description": "يرجى استخدام بريد @stu.kau.edu.sa صالح.",
     "download.payment_success": "تمت عملية الدفع!",
-    "download.payment_success_description":
-      "سيتم إرسال مفتاح ستيم إلى بريدك الإلكتروني.",
+    "download.payment_success_description": "سيتم إرسال مفتاح ستيم إلى بريدك الإلكتروني.",
     "download.scan_to_pay": "أو امسح للدفع",
     "download.scan_qr_desc": "امسح الرمز بكاميرا هاتفك للدفع عبر PayPal",
     "download.feature_full_access": "وصول كامل للعبة",
@@ -376,15 +364,11 @@ const translations = {
     "download.verify_email_btn": "تحقق من البريد",
     "download.email_key_btn": "أرسل المفتاح إلى",
     "download.key_sent_to": "تم الإرسال إلى",
-
-    // Download — keys not available
     "download.keys_unavailable_title": "مفاتيح ستيم غير متوفرة بعد.",
     "download.keys_unavailable_desc":
       "لا تزال الإعدادات جارية. يرجى المحاولة لاحقاً أو التواصل معنا على lostbyte.support@gmail.com",
     "download.keys_unavailable_notice":
       "⚠️ مفاتيح ستيم غير متوفرة بعد. يرجى التحقق لاحقاً.",
-
-    // Download — key reveal screen
     "download.key_reveal_title": "مفتاح ستيم الخاص بك 🎮",
     "download.key_reveal_desc": "تم إرسال هذا المفتاح أيضاً إلى بريدك",
     "download.key_copy": "نسخ",
@@ -395,13 +379,9 @@ const translations = {
     "download.key_step2": "اضغط على Games في القائمة العلوية",
     "download.key_step3": "اضغط على Activate a Product on Steam",
     "download.key_step4": "الصق مفتاحك واضغط Next",
-
-    // Download — already claimed
     "download.already_have_key": "لديك بالفعل مفتاح ستيم!",
     "download.already_have_key_desc":
       "تم إرسال مفتاح إلى هذا البريد مسبقاً. يرجى التحقق من صندوق الوارد والبريد المزعج.",
-
-    // Download — OTP
     "download.otp_sent": "تم إرسال الرمز!",
     "download.otp_sent_desc": "تم إرسال رمز مكون من 6 أرقام إلى",
     "download.otp_placeholder": "أدخل الرمز المكون من 6 أرقام",
