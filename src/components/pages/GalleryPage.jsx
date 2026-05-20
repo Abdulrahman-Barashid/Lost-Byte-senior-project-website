@@ -8,7 +8,6 @@ const GALLERY_IMAGES = [
   { id: 1, titleKey: "gallery.img1_title", descKey: "gallery.img1_desc" },
   { id: 2, titleKey: "gallery.img2_title", descKey: "gallery.img2_desc" },
   { id: 3, titleKey: "gallery.img3_title", descKey: "gallery.img3_desc" },
-  { id: 4, titleKey: "gallery.img4_title", descKey: "gallery.img4_desc" },
   { id: 5, titleKey: "gallery.img5_title", descKey: "gallery.img5_desc" },
 ];
 

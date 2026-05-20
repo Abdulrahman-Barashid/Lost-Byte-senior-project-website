@@ -101,8 +101,6 @@ const translations = {
     "gallery.img2_desc": "Solve IT puzzles to progress",
     "gallery.img3_title": "Coding Challenge",
     "gallery.img3_desc": "Debug corrupted code",
-    "gallery.img4_title": "Network Maze",
-    "gallery.img4_desc": "Navigate through network topology",
     "gallery.img5_title": "Boss Encounter",
     "gallery.img5_desc": "Face the ultimate challenge",
 
@@ -167,6 +165,15 @@ const translations = {
     "download.feature_puzzles": "IT puzzles",
     "download.feature_updates": "Lifetime updates",
     "download.feature_support": "Priority support",
+    "download.paid_confirm": "✅ Paid? Click below to receive your Steam key:",
+    "download.get_my_key": "Get My Steam Key",
+    "download.getting_key": "Getting your key...",
+    "download.verify_email_first": "Verify your email to proceed with payment:",
+    "download.send_verification": "Send Verification Code",
+    "download.sending_code": "Sending code...",
+    "download.verify_email_btn": "Verify Email",
+    "download.email_key_btn": "Email this key to",
+    "download.key_sent_to": "Sent to",
 
     // Download — keys not available
     "download.keys_unavailable_title": "Steam keys are not available yet.",
@@ -297,8 +304,6 @@ const translations = {
     "gallery.img2_desc": "حل ألغاز تقنية المعلومات للتقدم",
     "gallery.img3_title": "تحدي البرمجة",
     "gallery.img3_desc": "اكتشف الأخطاء في الكود التالف",
-    "gallery.img4_title": "متاهة الشبكة",
-    "gallery.img4_desc": "تنقل عبر طوبولوجيا الشبكة",
     "gallery.img5_title": "مواجهة الزعيم",
     "gallery.img5_desc": "واجه التحدي الأقصى",
 
@@ -362,6 +367,15 @@ const translations = {
     "download.feature_puzzles": "ألغاز تقنية المعلومات",
     "download.feature_updates": "تحديثات مدى الحياة",
     "download.feature_support": "أولوية في الدعم",
+    "download.paid_confirm": "✅ هل دفعت؟ اضغط أدناه للحصول على مفتاح ستيم:",
+    "download.get_my_key": "احصل على مفتاح ستيم",
+    "download.getting_key": "جارٍ الحصول على مفتاحك...",
+    "download.verify_email_first": "تحقق من بريدك الإلكتروني للمتابعة:",
+    "download.send_verification": "إرسال رمز التحقق",
+    "download.sending_code": "جارٍ الإرسال...",
+    "download.verify_email_btn": "تحقق من البريد",
+    "download.email_key_btn": "أرسل المفتاح إلى",
+    "download.key_sent_to": "تم الإرسال إلى",
 
     // Download — keys not available
     "download.keys_unavailable_title": "مفاتيح ستيم غير متوفرة بعد.",

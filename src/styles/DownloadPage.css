@@ -344,3 +344,104 @@
   color: var(--muted-foreground);
 }
 .download-key-steps-list strong { color: var(--foreground); }
+
+/* ── Add these at the bottom of DownloadPage.css ── */
+
+.download-paypal-verified-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.download-paypal-verified-email {
+  font-size: 0.875rem;
+  color: rgb(34, 197, 94);
+  padding: 0.75rem 1rem;
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 0.5rem;
+}
+
+.download-paypal-verified-email strong {
+  font-weight: 600;
+}
+
+.download-claim-section {
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.download-claim-label {
+  font-size: 0.875rem;
+  color: var(--muted-foreground);
+  margin-bottom: 0.75rem;
+}
+
+/* Key reveal inside card (both KAU and PayPal) */
+.download-key-reveal-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 1.5rem 0;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.download-paypal-key-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+/* Email key button */
+.download-email-key-btn {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: background-color 0.2s;
+}
+.download-email-key-btn:hover    { background-color: var(--accent); }
+.download-email-key-btn:disabled { opacity: 0.6; cursor: not-allowed; }
+
+/* Verified email badge */
+.download-paypal-verified-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.download-paypal-verified-email {
+  font-size: 0.875rem;
+  color: rgb(34, 197, 94);
+  padding: 0.75rem 1rem;
+  background-color: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 0.5rem;
+}
+.download-paypal-verified-email strong { font-weight: 600; }
+
+/* After paying section */
+.download-claim-section {
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+.download-claim-label {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--foreground);
+  margin-bottom: 0.75rem;
+}
+
+/* PayPal verify section */
+.download-paypal-verify-section { display: flex; flex-direction: column; gap: 0.75rem; }
+.download-paypal-verify-label   { font-size: 0.875rem; font-weight: 600; color: var(--foreground); }
